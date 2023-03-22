@@ -1,0 +1,41 @@
+The current script directory is: /group/scratch/courses0100/caleblim/gpu-assignment/ex1-gol-cuda
+
+Make Directories
+
+Compiling code
+rm obj/*
+rm bin/*
+[ -d obj ] || mkdir obj
+[ -d bin ] || mkdir bin
+/group/courses0100/software/nvhpc/Linux_x86_64/21.9/compilers/bin/nvc -O0 -g  -o obj/common.o -c src/common.c 
+"src/common.c", line 122: warning: enumerated type mixed with another type
+        opt->iictype = atoi(argv[4]);
+                     ^
+
+"src/common.c", line 124: warning: enumerated type mixed with another type
+        opt->ivisualisetype = atoi(argv[5]);
+                            ^
+
+"src/common.c", line 126: warning: enumerated type mixed with another type
+        opt->iruletype = atoi(argv[6]);
+                       ^
+
+"src/common.c", line 128: warning: enumerated type mixed with another type
+        opt->ineighbourtype = atoi(argv[7]);
+                            ^
+
+"src/common.c", line 130: warning: enumerated type mixed with another type
+        opt->iboundarytype = atoi(argv[8]);
+                           ^
+
+gcc -O0 -g  -o bin/game_of_life_c src/game_of_life.c obj/common.o 
+nvcc -G -lineinfo -O0 -g  -o bin/game_of_life_cuda_c src/game_of_life.cu obj/common.o 
+nvcc warning : '--device-debug (-G)' overrides '--generate-line-info (-lineinfo)'
+ptxas warning : Conflicting options --device-debug and --generate-line-info specified, ignoring --generate-line-info option
+
+Running C code
+Requesting grid size of (1000,1000), which requires 0.003725 GB 
+Finnished GOL in 2136.884033 ms
+
+Running C CUDA
+GPU version
