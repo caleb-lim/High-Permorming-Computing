@@ -70,6 +70,10 @@ struct Options {
   char statsfile[2000];
 };
 
+void compare(int *cpu, int *gpu, int n, int m);
+void convert2D(int **grid, int *array, int n, int m);
+void visualisation2D(int **grid, int n, int m);
+
 /// visualise the game of life
 void visualise(enum VisualiseType ivisualisechoice, int step, int *grid, int n, int m);
 /// ascii visualisation

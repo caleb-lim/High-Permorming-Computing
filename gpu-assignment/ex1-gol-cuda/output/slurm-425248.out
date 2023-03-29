@@ -1,0 +1,1044 @@
+
+The following have been reloaded with a version change:
+  1) gcc/8.3.0 => gcc/9.2.0
+
+The current script directory is: /group/scratch/courses0100/caleblim/High-Permorming-Computing/High-Permorming-Computing/gpu-assignment/ex1-gol-cuda
+
+Make Directories
+
+Compiling code
+rm obj/*
+rm bin/*
+[ -d obj ] || mkdir obj
+[ -d bin ] || mkdir bin
+gcc -O0 -g  -o obj/common.o -c src/common.c 
+gcc -O0 -g  -o bin/game_of_life_c src/game_of_life.c obj/common.o 
+nvcc -G -lineinfo -O0 -g  -o bin/game_of_life_cuda_c src/game_of_life.cu obj/common.o 
+nvcc warning : '--device-debug (-G)' overrides '--generate-line-info (-lineinfo)'
+ptxas warning : Conflicting options --device-debug and --generate-line-info specified, ignoring --generate-line-info option
+
+Running C CUDA
+GPU versionRequesting grid size of (100,10), which requires 0.000004 GB 
+Finnished CUDA in 148.084000 ms
+Game of Life
+Step 1:
+ *  *  *     *     *  *  *    
+ *     *  *  *     *     *    
+    *  *     *     *     *    
+          *  *  *  *  *     * 
+    *        *     *        * 
+       *  *  *  *  *  *  *  * 
+       *           *        * 
+    *  *  *     *     *  *  * 
+ *     *  *  *  *     *  *  * 
+    *  *  *           *  *    
+ *  *     *  *     *        * 
+ *  *     *  *  *  *  *  *    
+ *           *  *  *  *       
+ *  *  *  *  *  *     *       
+    *              *  *       
+ *  *  *        *  *  *     * 
+ *  *  *     *  *  *        * 
+       *  *  *  *     *  *    
+    *        *     *     *  * 
+          *        *          
+ *     *  *           *       
+    *  *        *     *  *  * 
+ *  *  *     *  *        *  * 
+ *  *  *  *  *     *     *    
+       *  *  *  *  *          
+       *     *           *    
+    *        *  *        *    
+       *  *  *  *  *  *  *    
+ *        *  *  *  *  *  *  * 
+ *  *     *  *  *     *  *  * 
+ *  *  *  *        *  *  *    
+ *     *  *  *           *  * 
+          *     *     *       
+       *  *           *  *  * 
+          *  *  *     *  *  * 
+ *  *     *     *  *  *  *    
+ *  *     *     *           * 
+ *     *  *  *  *  *  *  *  * 
+ *  *  *        *        *  * 
+    *  *           *     *  * 
+    *  *     *  *        *  * 
+          *  *  *  *  *  *    
+    *  *  *  *  *        *  * 
+ *  *  *     *  *  *  *  *    
+    *        *           *  * 
+ *     *  *  *  *             
+    *  *     *  *           * 
+             *  *  *     *    
+ *        *  *  *  *  *  *  * 
+ *  *     *  *  *  *  *       
+ *  *  *        *  *     *    
+ *  *  *     *        *     * 
+    *     *     *     *     * 
+ *     *  *  *  *  *  *     * 
+ *        *     *     *     * 
+    *  *  *  *  *        *  * 
+    *  *  *  *        *  *    
+    *        *  *  *  *  *    
+ *  *     *  *     *        * 
+          *  *     *  *  *  * 
+ *  *        *  *     *  *  * 
+    *  *  *  *  *  *        * 
+ *  *  *  *           *  *    
+ *     *                 *    
+    *        *  *     *  *  * 
+       *  *     *  *  *  *    
+    *     *        *  *  *    
+       *  *  *     *  *  *    
+    *     *        *  *     * 
+ *  *  *  *        *  *  *  * 
+ *           *     *        * 
+ *  *  *        *             
+ *  *  *  *        *  *     * 
+ *  *     *     *  *     *    
+ *     *     *     *  *  *  * 
+ *  *     *  *        *     * 
+ *     *  *  *        *  *  * 
+ *     *  *  *     *     *    
+ *     *           *  *  *  * 
+ *  *  *  *  *  *  *  *       
+ *     *        *  *  *  *  * 
+ *           *        *       
+ *     *        *  *  *  *    
+ *  *  *  *                   
+    *     *  *        *     * 
+ *     *           *  *  *  * 
+ *  *  *        *  *  *  *    
+       *  *  *     *          
+ *  *  *        *        *    
+ *  *  *  *  *  *  *  *     * 
+    *     *  *  *  *     *  * 
+ *     *  *     *        *    
+          *     *     *       
+ *        *  *        *     * 
+       *  *  *  *        *  * 
+ *  *           *  *     *  * 
+ *  *  *  *     *  *  *  *  * 
+ *     *     *  *  *  *  *    
+ *     *        *  *  *  *  * 
+ *  *        *  *        *    
+Game of Life
+Step 2:
+ *     *     *     *     *    
+ *           *     *     *  * 
+    *                    *  * 
+    *                       * 
+                            * 
+    *  *     *              * 
+                              
+                *             
+ *              *             
+                              
+                            * 
+                         *    
+                              
+ *     *  *              *    
+                              
+          *  *                
+ *                          * 
+ *                            
+                   *     *  * 
+    *     *  *  *  *     *    
+          *  *        *       
+                *     *     * 
+                              
+ *                 *     *  * 
+                   *          
+    *  *           *  *       
+    *                    *  * 
+    *  *                      
+ *                            
+                              
+                   *          
+ *              *           * 
+    *              *  *       
+       *        *           * 
+    *           *             
+ *  *     *                   
+                            * 
+                      *       
+ *                            
+             *     *          
+    *                         
+                              
+ *                          * 
+ *                 *          
+                         *  * 
+ *                       *  * 
+    *  *                      
+    *  *                      
+ *  *  *                    * 
+                            * 
+                         *    
+             *        *     * 
+                      *     * 
+ *                    *     * 
+ *                    *     * 
+ *              *           * 
+ *                            
+                            * 
+ *  *                       * 
+                              
+ *  *                         
+                            * 
+ *              *  *  *  *  * 
+ *           *     *          
+    *        *  *           * 
+    *     *                   
+    *                       * 
+    *        *              * 
+ *                          * 
+ *        *  *              * 
+             *     *        * 
+             *  *     *  *    
+          *           *  *    
+                              
+                            * 
+ *                            
+ *                 *        * 
+ *           *     *          
+ *                          * 
+ *           *                
+ *     *                      
+ *        *  *              * 
+ *     *     *  *  *  *  *    
+ *              *             
+             *     *  *     * 
+ *           *              * 
+ *           *              * 
+             *           *    
+ *                       *    
+                            * 
+                            * 
+    *                    *  * 
+    *           *     *       
+                      *     * 
+ *     *                      
+ *                            
+          *                   
+ *                            
+ *     *                    * 
+ *  *        *  *        *  * 
+Game of Life
+Step 3:
+    *     *              *  * 
+ *        *                   
+ *  *                 *       
+                            * 
+    *  *                 *  * 
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+       *     *                
+                              
+                              
+                         *  * 
+             *     *     *  * 
+       *  *        *     *  * 
+       *  *           *       
+             *     *     *    
+                   *  *     * 
+                      *       
+    *           *  *     *    
+    *  *           *  *  *    
+ *                    *  *    
+ *  *  *                      
+    *                         
+                              
+                              
+                *     *       
+    *           *  *     *    
+    *  *        *             
+ *  *        *                
+ *  *  *                      
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                         *  * 
+                      *  *  * 
+    *                    *  * 
+ *     *                      
+          *                   
+ *     *                      
+    *                    *  * 
+                         *  * 
+                      *     * 
+                   *  *     * 
+                   *  *     * 
+ *  *              *        * 
+ *  *                    *    
+                              
+ *  *                         
+                              
+                              
+                              
+ *  *              *  *     * 
+                *  *  *  *  * 
+ *  *        *              * 
+ *  *  *  *  *  *             
+ *  *        *                
+ *  *                         
+ *  *                    *  * 
+ *  *     *  *           *  * 
+          *  *  *        *  * 
+                   *  *     * 
+          *  *  *           * 
+             *     *  *  *    
+                         *    
+                              
+                              
+ *  *           *             
+ *  *           *             
+ *  *           *             
+ *                            
+ *           *                
+ *     *     *     *  *  *    
+ *                 *  *  *    
+    *     *                   
+             *     *     *    
+          *  *              * 
+          *  *  *        *  * 
+                         *  * 
+                         *  * 
+                         *  * 
+                            * 
+                         *  * 
+                   *  *     * 
+    *              *     *    
+    *                         
+    *                         
+                              
+    *                         
+ *                       *  * 
+ *  *                    *  * 
+Game of Life
+Step 4:
+       *                      
+ *                       *    
+ *  *                         
+ *     *                    * 
+                         *  * 
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                      *  *  * 
+          *     *             
+       *     *  *  *        * 
+       *     *  *  *        * 
+          *     *  *     *    
+                *  *          
+                *             
+    *  *        *        *    
+ *  *  *        *           * 
+ *                 *     *    
+ *     *                      
+ *  *  *                      
+                              
+                              
+                *     *       
+    *  *     *  *     *       
+       *     *  *  *          
+          *                   
+ *     *                      
+    *                         
+                              
+                              
+                              
+                              
+                              
+                              
+                      *     * 
+                      *       
+    *                 *     * 
+    *  *                      
+       *  *                   
+    *  *                      
+    *                    *  * 
+                      *       
+                   *  *     * 
+                            * 
+                *           * 
+ *  *              *        * 
+ *  *                         
+                              
+                              
+                              
+                              
+                              
+                *           * 
+                *           * 
+ *                    *     * 
+                *             
+             *  *             
+       *                      
+                         *  * 
+ *  *     *     *     *       
+       *  *     *  *          
+                   *  *     * 
+          *  *              * 
+          *  *     *  *  *  * 
+                         *    
+                              
+                              
+ *  *                         
+       *     *  *  *          
+                              
+ *                            
+ *        *     *     *       
+ *        *        *     *    
+ *     *  *     *  *     *    
+                *  *     *    
+       *     *  *             
+                      *     * 
+          *     *             
+             *        *       
+                      *       
+                              
+                              
+                      *     * 
+                   *        * 
+                   *     *    
+ *  *  *                      
+                              
+                              
+                              
+ *                       *  * 
+ *  *                    *  * 
+Game of Life
+Step 5:
+                              
+ *                            
+ *                            
+ *                       *  * 
+                         *  * 
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                         *    
+                         *    
+          *     *     *     * 
+       *                      
+       *                 *  * 
+          *                   
+                      *       
+             *  *             
+ *     *     *  *  *          
+ *     *        *  *  *  *  * 
+ *     *                      
+ *     *                      
+ *     *                      
+    *                         
+                              
+             *  *             
+    *  *              *       
+    *  *           *          
+    *  *  *  *  *             
+    *  *                      
+    *                         
+                              
+                              
+                              
+                              
+                              
+                              
+                         *    
+                   *  *       
+    *  *                 *    
+    *     *                   
+          *                   
+    *     *                   
+    *  *                 *    
+                   *  *     * 
+                   *  *       
+                   *        * 
+                         *  * 
+ *  *                         
+ *  *                         
+                              
+                              
+                              
+                              
+                              
+                              
+                   *        * 
+                   *     *    
+             *  *  *          
+             *  *             
+                              
+    *  *                 *    
+    *     *     *     *  *    
+    *  *  *     *        *    
+       *           *  *  *    
+          *  *              * 
+          *  *  *     *     * 
+                         *  * 
+                              
+                              
+    *           *             
+    *           *             
+                *             
+                              
+ *  *        *     *  *       
+ *        *              *    
+    *  *  *              *  * 
+    *  *                      
+             *  *     *  *    
+          *     *  *          
+             *     *     *    
+             *     *          
+                              
+                              
+                              
+                         *    
+                   *        * 
+    *                 *       
+    *                         
+    *                         
+                              
+                              
+ *  *                    *  * 
+ *  *                    *  * 
+Game of Life
+Step 6:
+                              
+                              
+ *  *                         
+                         *  * 
+                         *  * 
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                      *  *  * 
+                         *    
+       *  *                 * 
+       *  *                   
+                         *    
+             *                
+          *  *                
+                         *    
+ *     *     *        *  *    
+ *     *  *        *  *  *    
+ *     *  *                   
+ *     *                      
+    *                         
+                              
+                              
+    *  *  *     *  *          
+ *           *  *  *          
+ *           *  *             
+ *           *                
+    *  *                      
+                              
+                              
+                              
+                              
+                              
+                              
+                      *       
+                      *  *    
+    *  *              *       
+    *     *                   
+          *  *                
+    *     *                   
+    *  *              *  *    
+                   *          
+                *             
+                   *        * 
+                         *  * 
+ *  *                         
+ *  *                         
+                              
+                              
+                              
+                              
+                              
+                              
+                      *       
+                   *          
+             *     *  *       
+             *     *          
+                              
+    *  *              *  *    
+ *        *        *  *  *  * 
+    *     *     *           * 
+    *           *  *  *  *  * 
+       *                    * 
+          *     *           * 
+             *           *  * 
+                              
+                              
+                              
+             *  *  *          
+                              
+                *  *          
+ *  *                 *       
+ *        *  *           *  * 
+ *        *              *  * 
+    *        *        *     * 
+       *  *  *  *     *       
+          *              *    
+          *  *     *          
+                      *       
+                              
+                              
+                              
+                              
+                      *  *    
+                              
+ *  *  *                      
+                              
+                              
+                              
+ *  *                    *  * 
+ *  *                    *  * 
+Game of Life
+Step 7:
+                              
+                              
+                              
+                         *  * 
+                         *  * 
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                         *    
+                      *  *  * 
+                      *       
+       *  *                   
+       *  *                   
+          *                   
+          *  *                
+          *  *                
+             *        *  *    
+       *           *        * 
+ *           *     *     *    
+ *                    *       
+ *     *  *                   
+    *                         
+                              
+       *                      
+    *  *  *        *          
+ *     *                      
+ *  *     *        *          
+ *        *  *  *             
+    *                         
+                              
+                              
+                              
+                              
+                              
+                              
+                      *  *    
+                   *  *  *    
+    *  *              *  *    
+    *     *  *                
+          *  *                
+    *     *  *                
+    *  *              *       
+                   *  *       
+                *  *          
+                         *  * 
+                         *  * 
+ *  *                         
+ *  *                         
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                *  *          
+                   *  *       
+                   *  *       
+                      *       
+    *  *           *        * 
+ *        *  *     *        * 
+ *  *           *             
+    *        *  *  *  *     * 
+       *     *  *     *     * 
+          *  *              * 
+             *           *  * 
+                              
+                              
+                *             
+                *             
+             *                
+                   *          
+ *  *        *  *  *  *  *    
+ *     *  *  *        *     * 
+ *  *  *  *           *       
+    *           *  *  *     * 
+       *        *  *  *       
+                   *  *       
+          *  *        *       
+                              
+                              
+                              
+                              
+                              
+                              
+    *                         
+    *                         
+    *                         
+                              
+                              
+ *  *                    *  * 
+ *  *                    *  * 
+Game of Life
+Step 8:
+                              
+                              
+                              
+                         *  * 
+                         *  * 
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                      *  *  * 
+                      *     * 
+                      *       
+       *  *                   
+             *                
+                              
+       *                      
+                *             
+             *  *     *  *    
+          *        *        * 
+    *           *  *     *    
+ *        *           *       
+ *     *                      
+    *  *                      
+                              
+    *  *  *                   
+          *                   
+ *                            
+ *        *     *             
+ *        *  *  *             
+             *                
+                              
+                              
+                              
+                              
+                              
+                              
+                   *     *    
+                   *        * 
+    *  *  *        *     *    
+    *        *                
+                *             
+    *        *                
+    *  *  *        *  *       
+                *     *       
+                *  *     *    
+                      *  *  * 
+                         *  * 
+ *  *                         
+ *  *                         
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                *  *  *       
+                              
+                         *    
+                      *  *    
+    *  *  *     *  *  *  *    
+ *        *  *     *          
+ *  *  *  *           *  *    
+ *  *  *  *           *       
+       *              *     * 
+                            * 
+          *  *           *  * 
+                              
+                              
+                              
+             *  *             
+                *             
+             *     *          
+ *  *  *     *           *    
+                              
+ *              *     *       
+ *        *  *  *             
+                              
+          *  *           *    
+                   *  *       
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+ *  *  *                      
+                              
+                              
+                              
+ *  *                    *  * 
+ *  *                    *  * 
+Game of Life
+Step 9:
+                              
+                              
+                              
+                         *  * 
+                         *  * 
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                         *    
+                      *     * 
+                   *  *     * 
+                         *    
+          *                   
+          *                   
+                              
+                              
+             *  *  *          
+             *  *     *  *    
+                            * 
+       *     *  *  *     *    
+ *     *           *  *       
+ *     *  *                   
+    *  *                      
+          *                   
+       *  *                   
+    *     *                   
+             *                
+ *  *     *     *             
+          *     *             
+          *  *  *             
+                              
+                              
+                              
+                              
+                              
+                              
+                      *       
+       *        *  *     *  * 
+    *  *  *     *     *       
+    *     *  *  *             
+             *  *             
+    *     *  *  *  *          
+    *  *  *  *  *  *  *       
+       *     *  *        *    
+                *           * 
+                   *          
+                      *     * 
+ *  *                         
+ *  *                         
+                              
+                              
+                              
+                              
+                              
+                              
+                   *          
+                   *          
+                   *  *       
+                      *  *    
+       *                    * 
+    *  *  *     *        *    
+ *                            
+                   *  *  *    
+ *                 *  *       
+       *  *                   
+          *                 * 
+                         *  * 
+                              
+                              
+                              
+             *  *             
+                   *          
+    *     *  *                
+    *     *     *             
+ *                            
+                *  *          
+             *  *  *          
+                *             
+                      *       
+                      *       
+                              
+                              
+                              
+                              
+                              
+                              
+    *                         
+    *                         
+    *                         
+                              
+                              
+ *  *                    *  * 
+ *  *                    *  * 
+Game of Life
+Step 10:
+                              
+                              
+                              
+                         *  * 
+                         *  * 
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                         *    
+                   *  *     * 
+                   *  *     * 
+                      *  *    
+                              
+                              
+                              
+                *             
+             *     *  *       
+             *        *  *    
+          *                 * 
+    *     *     *  *     *    
+       *     *     *  *       
+ *        *                   
+    *                         
+    *     *                   
+          *  *                
+          *  *                
+ *  *     *  *                
+       *  *     *             
+          *     *  *          
+          *     *             
+             *                
+                              
+                              
+                              
+                              
+                              
+                   *  *  *    
+    *  *  *  *  *        *    
+    *                 *  *    
+    *                         
+                              
+    *                 *       
+    *                 *       
+    *  *              *  *    
+             *  *  *          
+                   *     *    
+                              
+ *  *                         
+ *  *                         
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                *  *          
+                   *     *    
+                   *  *  *    
+    *  *  *           *     * 
+    *  *  *                   
+    *  *           *     *    
+                   *     *    
+                   *     *    
+       *  *                   
+       *  *              *  * 
+                         *  * 
+                              
+                              
+                              
+                *             
+          *                   
+          *  *  *             
+ *  *     *                   
+             *  *  *          
+             *     *          
+             *                
+             *  *             
+                   *          
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+ *  *  *                      
+                              
+                              
+                              
+ *  *                    *  * 
+ *  *                    *  * 
+Finnished GOL in 21.622999 ms
+Error at 38Error at 39Error at 48Error at 49Error at 127Error at 137Error at 138Error at 147Error at 157Error at 158Error at 166Error at 169Error at 179Error at 183Error at 186Error at 187Error at 188Error at 193Error at 196Error at 200Error at 202Error at 203Error at 207Error at 211Error at 212Error at 215Error at 217Error at 218Error at 219Error at 220Error at 221Error at 222Error at 224Error at 226Error at 228Error at 229Error at 230Error at 231Error at 232Error at 233Error at 237Error at 242Error at 247Error at 248Error at 253Error at 254Error at 255Error at 256Error at 258Error at 259Error at 261Error at 263Error at 264Error at 266Error at 271Error at 273Error at 275Error at 278Error at 280Error at 281Error at 282Error at 284Error at 285Error at 286Error at 287Error at 288Error at 289Error at 293Error at 294Error at 295Error at 297Error at 298Error at 299Error at 300Error at 301Error at 302Error at 304Error at 306Error at 307Error at 308Error at 310Error at 312Error at 313Error at 314Error at 318Error at 319Error at 323Error at 327Error at 331Error at 332Error at 333Error at 335Error at 337Error at 338Error at 339Error at 341Error at 343Error at 344Error at 346Error at 347Error at 348Error at 349Error at 350Error at 351Error at 357Error at 358Error at 360Error at 361Error at 366Error at 369Error at 370Error at 372Error at 373Error at 375Error at 376Error at 377Error at 378Error at 379Error at 380Error at 381Error at 382Error at 385Error at 388Error at 389Error at 391Error at 392Error at 396Error at 398Error at 399Error at 401Error at 402Error at 404Error at 405Error at 408Error at 409Error at 413Error at 414Error at 415Error at 416Error at 417Error at 418Error at 421Error at 422Error at 423Error at 424Error at 425Error at 427Error at 428Error at 429Error at 430Error at 431Error at 433Error at 442Error at 443Error at 445Error at 448Error at 451Error at 452Error at 455Error at 457Error at 458Error at 461Error at 462Error at 464Error at 465Error at 469Error at 474Error at 475Error at 476Error at 478Error at 480Error at 483Error at 484Error at 485Error at 486Error at 487Error at 488Error at 489Error at 493Error at 494Error at 495Error at 500Error at 506Error at 507Error at 510Error at 511Error at 512Error at 514Error at 515Error at 516Error at 517Error at 518Error at 519Error at 521Error at 523Error at 525Error at 526Error at 529Error at 530Error at 532Error at 533Error at 534Error at 535Error at 536Error at 537Error at 539Error at 541Error at 543Error at 545Error at 547Error at 549Error at 550Error at 552Error at 553Error at 554Error at 555Error at 558Error at 559Error at 561Error at 562Error at 563Error at 564Error at 567Error at 568Error at 571Error at 574Error at 575Error at 576Error at 577Error at 578Error at 580Error at 581Error at 583Error at 584Error at 586Error at 589Error at 593Error at 594Error at 596Error at 597Error at 598Error at 599Error at 600Error at 601Error at 604Error at 605Error at 607Error at 608Error at 609Error at 611Error at 612Error at 613Error at 614Error at 615Error at 616Error at 619Error at 620Error at 621Error at 622Error at 623Error at 627Error at 628Error at 630Error at 632Error at 635Error at 636Error at 637Error at 638Error at 641Error at 644Error at 645Error at 647Error at 649Error at 653Error at 655Error at 657Error at 658Error at 659Error at 668Error at 670Error at 672Error at 673Error at 674Error at 676Error at 686Error at 687Error at 689Error at 690Error at 691Error at 692Error at 693Error at 695Error at 697Error at 700Error at 704Error at 706Error at 709Error at 710Error at 711Error at 713Error at 715Error at 717Error at 718Error at 719Error at 720Error at 721Error at 726Error at 727Error at 728Error at 730Error at 731Error at 733Error at 735Error at 736Error at 739Error at 740Error at 742Error at 744Error at 746Error at 747Error at 748Error at 749Error at 750Error at 751Error at 753Error at 754Error at 757Error at 759Error at 760Error at 762Error at 763Error at 764Error at 767Error at 768Error at 769Error at 770Error at 772Error at 773Error at 774Error at 776Error at 778Error at 780Error at 782Error at 783Error at 785Error at 786Error at 787Error at 788Error at 789Error at 790Error at 791Error at 792Error at 794Error at 795Error at 796Error at 797Error at 800Error at 803Error at 805Error at 807Error at 808Error at 809Error at 810Error at 813Error at 816Error at 817Error at 820Error at 822Error at 823Error at 824Error at 825Error at 827Error at 828Error at 830Error at 831Error at 832Error at 834Error at 841Error at 843Error at 845Error at 847Error at 849Error at 850Error at 852Error at 855Error at 856Error at 857Error at 858Error at 859Error at 860Error at 861Error at 862Error at 865Error at 866Error at 867Error at 868Error at 872Error at 873Error at 874Error at 876Error at 880Error at 881Error at 882Error at 885Error at 888Error at 890Error at 891Error at 892Error at 893Error at 894Error at 895Error at 896Error at 897Error at 899Error at 901Error at 903Error at 904Error at 905Error at 906Error at 908Error at 909Error at 910Error at 912Error at 913Error at 915Error at 918Error at 923Error at 925Error at 927Error at 930Error at 931Error at 933Error at 934Error at 937Error at 939Error at 941Error at 942Error at 943Error at 944Error at 945Error at 948Error at 949Error at 950Error at 955Error at 956Error at 958Error at 959Error at 960Error at 961Error at 962Error at 963Error at 965Error at 966Error at 967Error at 968Error at 969Error at 970Error at 972Error at 974Error at 975Error at 976Error at 977Error at 978Error at 981Error at 982Error at 985Error at 986Error at 987Error at 994Error at 995Error at 999

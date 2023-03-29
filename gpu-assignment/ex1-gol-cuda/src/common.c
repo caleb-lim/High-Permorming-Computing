@@ -2,6 +2,46 @@
 
 */
 #include "common.h"
+void compare(int *cpu, int *gpu, int n, int m){
+    int match = 1;
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+            if (cpu[i*m + j] != gpu[i*m + j]) {
+                match = 0;
+                int error = i*m + j;
+                printf("Error at %d", error);
+            }
+        }
+    }
+
+    if(match == 1){
+         printf("Both matrixes are matching\n");
+    }
+}
+
+void convert2D(int **grid, int *array, int n, int m){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            grid[i][j] = array[i*m + j];
+        }
+    }
+}
+
+void visualisation2D(int **grid, int n, int m){
+    printf("Game of Life\n");
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+            char cell = ' ';
+            if (grid[i][j] == ALIVE) cell = '*';
+            printf(" %c ", cell);
+        }
+        printf("\n");
+    }
+}
 
 void visualise(enum VisualiseType ivisualisetype, int step, int *grid, int n, int m){
     if (ivisualisetype == VISUAL_ASCII) visualise_ascii(step, grid, n, m);

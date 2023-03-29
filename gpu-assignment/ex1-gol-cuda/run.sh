@@ -26,11 +26,12 @@ srun --export=all -u -n 1 make
 echo
 
 # Run C code
-echo "Running C code"
-srun --export=all -u -n 1 bin/game_of_life_c 1000 1000 100
-echo 
+# echo "Running C code"
+# srun --export=all -u -n 1 bin/game_of_life_c 10 10 5
+# echo 
 
 echo "Running C CUDA"
-srun --export=all -u -n 1 bin/game_of_life_cuda_c 1000 1000 100
+srun --export=all -u -n 1 bin/game_of_life_cuda_c 1000 10000 10
 # srun --export=all u -n 1 make -f bin/game_of_life_c
 # srun --export=all u -n 1 make -f bin/game_of_life_cuda_c
+``

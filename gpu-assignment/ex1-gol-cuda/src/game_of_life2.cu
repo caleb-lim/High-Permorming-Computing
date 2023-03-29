@@ -30,8 +30,8 @@ __global__ void game_of_life_step(int *current_grid, int *next_grid, int n, int 
     int n_i[8], n_j[8];
 
     if (idx < n * m){
-        unsigned int i = idx / m;
-        unsigned int j = idx % m;
+        unsigned int i = idx / n;
+        unsigned int j = idx % n;
         
         // count the number of neighbours, clockwise around the current cell.
         neighbours = 0;
@@ -118,31 +118,43 @@ int main(int argc, char **argv)
     printf("GPU version");
     struct Options *opt = (struct Options *) malloc(sizeof(struct Options));
     getinput(argc, argv, opt);
-    int n = opt->n, m = opt->m, nsteps = opt->nsteps;
+    int n = opt->n, m = opt->m;
     int *initial_state = (int *) malloc(sizeof(int) * n * m);
+
+    int **game_of_life_grid = (int**)malloc(n * sizeof(int*));
+    for(int i = 0; i < n; i++){
+        game_of_life_grid[i] = (int*)malloc(m * sizeof(int));
+    }
+
     if(!initial_state){
         printf("Error while allocating memory.\n");
         return -1;
     }
+    
     generate_IC(opt->iictype, initial_state, n, m);
-    struct timeval start_cuda, start;
-    start_cuda = init_time();
-    int *final_state_cuda = game_of_life(initial_state, n, m, nsteps);
-    float elapsed_cuda = get_elapsed_time(start_cuda);
-    printf("Finnished CUDA in %f ms\n", elapsed_cuda);
+    convert2D(game_of_life_grid, initial_state, n, m); 
 
-    start = init_time();
-    int *final_state = cpu_game_of_life(initial_state, n, m, nsteps);
-    float elapsed = get_elapsed_time(start);
-    printf("Finnished GOL in %f ms\n", elapsed);
+    // struct timeval start_cuda, start;
+    // start_cuda = init_time();
+    // int *final_state_cuda = game_of_life(initial_state, n, m, nsteps);
+    // float elapsed_cuda = get_elapsed_time(start_cuda);
+    // printf("Finnished CUDA in %f ms\n", elapsed_cuda);
 
-    compare(final_state, final_state_cuda, n, m);
-    visualise(VISUAL_ASCII, 100, final_state, n, m);
-    visualise(VISUAL_ASCII, 100, final_state_cuda, n, m);
+    // start = init_time();
+    // int *final_state = cpu_game_of_life(initial_state, n, m, nsteps);
+    // float elapsed = get_elapsed_time(start);
+    // printf("Finnished GOL in %f ms\n", elapsed);
 
-    free(final_state_cuda);
-    free(final_state);
+    // compare(final_state, final_state_cuda, n, m);
+    visualise(VISUAL_ASCII, 1, initial_state, n, m);
+    visualisation2D(game_of_life_grid, n, m);
+    // visualise(VISUAL_ASCII, 100, final_state_cuda, n, m);
+
+    // free(final_state_cuda);
+    // free(final_state);
     free(initial_state);
+    free(game_of_life_grid);
+
     free(opt);
     return 0;
 }
