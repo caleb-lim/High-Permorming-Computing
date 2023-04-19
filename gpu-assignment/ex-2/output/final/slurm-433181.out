@@ -1,0 +1,243 @@
+Compiling code
+rm obj/*
+rm bin/*
+[ -d obj ] || mkdir obj
+[ -d bin ] || mkdir bin
+pgcc -Mpreprocess -O2 -pg -g    -c src/common.c -o obj/common.o
+pgcc -O2 -pg -g    -c src/01_gol_cpu_serial.c -o obj/01_gol_cpu_serial.o
+pgcc -O2 -pg -g    -o bin/01_gol_cpu_serial obj/01_gol_cpu_serial.o obj/common.o
+pgcc -O2 -pg -g   -acc -Minfo=accel  -c src/02_gol_gpu_openacc.c -o obj/02_gol_gpu_openacc.o
+game_of_life:
+      7, Generating enter data copyin(current_grid[:m*n])
+         Generating enter data create(next_grid[:m*n])
+      8, Generating present(current_grid[:m*n],next_grid[:m*n])
+         Generating Tesla code
+          9, #pragma acc loop gang, vector(128) collapse(2) /* blockIdx.x threadIdx.x */
+         10,   /* blockIdx.x threadIdx.x collapsed */
+      8, Local memory used for n_j,n_i
+     40, Generating exit data copyout(next_grid[:m*n])
+main:
+    111, Generating update self(grid[:m*n])
+pgcc -O2 -pg -g   -acc -Minfo=accel  -o bin/02_gol_gpu_openacc obj/02_gol_gpu_openacc.o obj/common.o 
+
+/var/spool/slurm/job433181/slurm_script: line 21: Run: command not found
+Running C code
+Requesting grid size of (10,10), which requires 0.000000 GB 
+Elapsed time 0.000003 s
+Elapsed time 0.000003 s
+Elapsed time 0.000002 s
+Elapsed time 0.000002 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000002 s
+Elapsed time 0.000002 s
+Elapsed time 0.000002 s
+Elapsed time 0.000001 s
+Elapsed time 0.000002 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000002 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000002 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000002 s
+Elapsed time 0.000001 s
+Elapsed time 0.000002 s
+Elapsed time 0.000002 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000002 s
+Elapsed time 0.000001 s
+Elapsed time 0.000002 s
+Elapsed time 0.000002 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Elapsed time 0.000001 s
+Finnished GOL
+Elapsed time 0.005399 s
+
+Running Directive code
+Requesting grid size of (10,10), which requires 0.000000 GB 
+Elapsed time 0.166880 s
+Elapsed time 0.000030 s
+Elapsed time 0.000015 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000017 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000015 s
+Elapsed time 0.000014 s
+Elapsed time 0.000020 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000015 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000014 s
+Elapsed time 0.000013 s
+Elapsed time 0.172523 s
+Finnished GOL
+Elapsed time 0.173292 s
+
+Generating profiling report for C
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+ no time accumulated
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+

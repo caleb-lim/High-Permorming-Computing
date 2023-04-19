@@ -1,0 +1,125 @@
+
+The following have been reloaded with a version change:
+  1) gcc/8.3.0 => gcc/9.2.0
+
+The current script directory is: /group/scratch/courses0100/caleblim/High-Permorming-Computing/High-Permorming-Computing/gpu-assignment/ex1-gol-cuda
+
+Make Directories
+
+Compiling code
+rm obj/*
+rm bin/*
+[ -d obj ] || mkdir obj
+[ -d bin ] || mkdir bin
+gcc -O0 -g  -o obj/common.o -c src/common.c 
+gcc -O0 -g  -o bin/game_of_life_c src/game_of_life.c obj/common.o 
+nvcc -G -lineinfo -O0 -g  -o bin/game_of_life_cuda_c src/game_of_life.cu obj/common.o 
+nvcc warning : '--device-debug (-G)' overrides '--generate-line-info (-lineinfo)'
+ptxas warning : Conflicting options --device-debug and --generate-line-info specified, ignoring --generate-line-info option
+
+Running C CUDA
+GPU versionRequesting grid size of (10000,10000), which requires 0.372529 GB 
+Step 0: 0.030000 ms
+Step 1: 0.040000 ms
+Step 2: 0.046000 ms
+Step 3: 0.051000 ms
+Step 4: 0.056000 ms
+Step 5: 0.061000 ms
+Step 6: 0.066000 ms
+Step 7: 0.071000 ms
+Step 8: 0.077000 ms
+Step 9: 0.083000 ms
+Step 10: 0.088000 ms
+Step 11: 0.093000 ms
+Step 12: 0.098000 ms
+Step 13: 0.103000 ms
+Step 14: 0.108000 ms
+Step 15: 0.113000 ms
+Step 16: 0.118000 ms
+Step 17: 0.123000 ms
+Step 18: 0.128000 ms
+Step 19: 0.133000 ms
+Step 20: 0.138000 ms
+Step 21: 0.143000 ms
+Step 22: 0.148000 ms
+Step 23: 0.153000 ms
+Step 24: 0.158000 ms
+Step 25: 0.164000 ms
+Step 26: 0.169000 ms
+Step 27: 0.175000 ms
+Step 28: 0.180000 ms
+Step 29: 0.185000 ms
+Step 30: 0.190000 ms
+Step 31: 0.195000 ms
+Step 32: 0.200000 ms
+Step 33: 0.205000 ms
+Step 34: 0.210000 ms
+Step 35: 0.215000 ms
+Step 36: 0.221000 ms
+Step 37: 0.226000 ms
+Step 38: 0.231000 ms
+Step 39: 0.236000 ms
+Step 40: 0.241000 ms
+Step 41: 0.246000 ms
+Step 42: 0.251000 ms
+Step 43: 0.256000 ms
+Step 44: 0.261000 ms
+Step 45: 0.266000 ms
+Step 46: 0.271000 ms
+Step 47: 0.276000 ms
+Step 48: 0.281000 ms
+Step 49: 0.286000 ms
+Step 50: 0.291000 ms
+Step 51: 0.296000 ms
+Step 52: 0.301000 ms
+Step 53: 0.306000 ms
+Step 54: 0.310000 ms
+Step 55: 0.315000 ms
+Step 56: 0.320000 ms
+Step 57: 0.325000 ms
+Step 58: 0.330000 ms
+Step 59: 0.335000 ms
+Step 60: 0.340000 ms
+Step 61: 0.345000 ms
+Step 62: 0.349000 ms
+Step 63: 0.354000 ms
+Step 64: 0.359000 ms
+Step 65: 0.364000 ms
+Step 66: 0.368000 ms
+Step 67: 0.373000 ms
+Step 68: 0.378000 ms
+Step 69: 0.383000 ms
+Step 70: 0.388000 ms
+Step 71: 0.393000 ms
+Step 72: 0.398000 ms
+Step 73: 0.402000 ms
+Step 74: 0.407000 ms
+Step 75: 0.412000 ms
+Step 76: 0.416000 ms
+Step 77: 0.420000 ms
+Step 78: 0.425000 ms
+Step 79: 0.430000 ms
+Step 80: 0.435000 ms
+Step 81: 0.440000 ms
+Step 82: 0.445000 ms
+Step 83: 0.450000 ms
+Step 84: 0.455000 ms
+Step 85: 0.460000 ms
+Step 86: 0.465000 ms
+Step 87: 0.470000 ms
+Step 88: 0.475000 ms
+Step 89: 0.480000 ms
+Step 90: 0.485000 ms
+Step 91: 0.490000 ms
+Step 92: 0.495000 ms
+Step 93: 0.500000 ms
+Step 94: 0.505000 ms
+Step 95: 0.510000 ms
+Step 96: 0.514000 ms
+Step 97: 0.519000 ms
+Step 98: 0.524000 ms
+Step 99: 0.529000 ms
+Time Spent in kernel 0.529000 ms
+Finnished CUDA in 2167.574951 ms
+Finnished GOL in 220806.875000 ms
+Both matrixes are matching

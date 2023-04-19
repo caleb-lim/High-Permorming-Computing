@@ -18,14 +18,14 @@ srun --export=all -u -n 1 make clean
 srun --export=all -u -n 1 make
 echo
 
-# Run C code
-# echo "Running C code"
-# srun --export=all -u -n 1 bin/01_gol_cpu_serial 10 10 5
-# echo
+Run C code
+echo "Running C code"
+srun --export=all -u -n 1 bin/01_gol_cpu_serial 10000 10000 100
+echo
 
 # Run Directive code
 echo "Running Directive code"
-srun --export=all -u -n 1 bin/02_gol_gpu_openacc 10000 10000 10
+srun --export=all -u -n 1 bin/02_gol_gpu_openacc 10000 10000 100
 echo
 
 echo "Generating profiling report for C"

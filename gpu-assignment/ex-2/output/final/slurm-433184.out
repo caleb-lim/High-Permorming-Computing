@@ -1,0 +1,245 @@
+Compiling code
+rm obj/*
+rm bin/*
+[ -d obj ] || mkdir obj
+[ -d bin ] || mkdir bin
+pgcc -Mpreprocess -O2 -pg -g    -c src/common.c -o obj/common.o
+pgcc -O2 -pg -g    -c src/01_gol_cpu_serial.c -o obj/01_gol_cpu_serial.o
+pgcc -O2 -pg -g    -o bin/01_gol_cpu_serial obj/01_gol_cpu_serial.o obj/common.o
+pgcc -O2 -pg -g   -acc -Minfo=accel  -c src/02_gol_gpu_openacc.c -o obj/02_gol_gpu_openacc.o
+game_of_life:
+      7, Generating enter data copyin(current_grid[:m*n])
+         Generating enter data create(next_grid[:m*n])
+      8, Generating present(current_grid[:m*n],next_grid[:m*n])
+         Generating Tesla code
+          9, #pragma acc loop gang, vector(128) collapse(2) /* blockIdx.x threadIdx.x */
+         10,   /* blockIdx.x threadIdx.x collapsed */
+      8, Local memory used for n_j,n_i
+     40, Generating exit data copyout(next_grid[:m*n])
+main:
+    111, Generating update self(grid[:m*n])
+pgcc -O2 -pg -g   -acc -Minfo=accel  -o bin/02_gol_gpu_openacc obj/02_gol_gpu_openacc.o obj/common.o 
+
+/var/spool/slurm/job433184/slurm_script: line 21: Run: command not found
+Running C code
+Requesting grid size of (10000,10000), which requires 0.372529 GB 
+Elapsed time 1.079530 s
+Elapsed time 0.798482 s
+Elapsed time 0.770744 s
+Elapsed time 0.759036 s
+Elapsed time 0.752369 s
+Elapsed time 0.747595 s
+Elapsed time 0.744129 s
+Elapsed time 0.741853 s
+Elapsed time 0.741023 s
+Elapsed time 0.740351 s
+Elapsed time 0.740549 s
+Elapsed time 0.740805 s
+Elapsed time 0.738771 s
+Elapsed time 0.738037 s
+Elapsed time 0.737491 s
+Elapsed time 0.738640 s
+Elapsed time 0.737015 s
+Elapsed time 0.736750 s
+Elapsed time 0.736970 s
+Elapsed time 0.736193 s
+Elapsed time 0.734405 s
+Elapsed time 0.733904 s
+Elapsed time 0.733532 s
+Elapsed time 0.732045 s
+Elapsed time 0.731413 s
+Elapsed time 0.730528 s
+Elapsed time 0.729892 s
+Elapsed time 0.729915 s
+Elapsed time 0.728999 s
+Elapsed time 0.727557 s
+Elapsed time 0.727271 s
+Elapsed time 0.725940 s
+Elapsed time 0.736856 s
+Elapsed time 0.753201 s
+Elapsed time 0.724969 s
+Elapsed time 0.799335 s
+Elapsed time 0.784353 s
+Elapsed time 0.799912 s
+Elapsed time 0.822888 s
+Elapsed time 0.756515 s
+Elapsed time 0.779503 s
+Elapsed time 0.753304 s
+Elapsed time 0.746401 s
+Elapsed time 0.719007 s
+Elapsed time 0.716547 s
+Elapsed time 0.716574 s
+Elapsed time 0.716006 s
+Elapsed time 0.714513 s
+Elapsed time 0.713737 s
+Elapsed time 0.713375 s
+Elapsed time 0.713396 s
+Elapsed time 0.712469 s
+Elapsed time 0.711277 s
+Elapsed time 0.710911 s
+Elapsed time 0.710011 s
+Elapsed time 0.709474 s
+Elapsed time 0.709059 s
+Elapsed time 0.709032 s
+Elapsed time 0.708053 s
+Elapsed time 0.707810 s
+Elapsed time 0.707066 s
+Elapsed time 0.706141 s
+Elapsed time 0.705929 s
+Elapsed time 0.705515 s
+Elapsed time 0.705214 s
+Elapsed time 0.705038 s
+Elapsed time 0.704548 s
+Elapsed time 0.704919 s
+Elapsed time 0.704068 s
+Elapsed time 0.703145 s
+Elapsed time 0.703742 s
+Elapsed time 0.702552 s
+Elapsed time 0.702317 s
+Elapsed time 0.700937 s
+Elapsed time 0.701793 s
+Elapsed time 0.700766 s
+Elapsed time 0.700218 s
+Elapsed time 0.700699 s
+Elapsed time 0.699600 s
+Elapsed time 0.698839 s
+Elapsed time 0.699658 s
+Elapsed time 0.699001 s
+Elapsed time 0.698111 s
+Elapsed time 0.696910 s
+Elapsed time 0.696865 s
+Elapsed time 0.695946 s
+Elapsed time 0.696591 s
+Elapsed time 0.695104 s
+Elapsed time 0.694366 s
+Elapsed time 0.693908 s
+Elapsed time 0.693927 s
+Elapsed time 0.693839 s
+Elapsed time 0.692984 s
+Elapsed time 0.692920 s
+Elapsed time 0.692392 s
+Elapsed time 0.691854 s
+Elapsed time 0.692267 s
+Elapsed time 0.691608 s
+Elapsed time 0.690637 s
+Elapsed time 0.690566 s
+Finnished GOL
+Elapsed time 72.768658 s
+
+Running Directive code
+Requesting grid size of (10000,10000), which requires 0.372529 GB 
+Elapsed time 0.364612 s
+Elapsed time 0.067365 s
+Elapsed time 0.001433 s
+Elapsed time 0.001407 s
+Elapsed time 0.001421 s
+Elapsed time 0.001403 s
+Elapsed time 0.001417 s
+Elapsed time 0.001398 s
+Elapsed time 0.001417 s
+Elapsed time 0.001397 s
+Elapsed time 0.001414 s
+Elapsed time 0.001397 s
+Elapsed time 0.001413 s
+Elapsed time 0.001398 s
+Elapsed time 0.001410 s
+Elapsed time 0.001395 s
+Elapsed time 0.001412 s
+Elapsed time 0.001394 s
+Elapsed time 0.001416 s
+Elapsed time 0.001393 s
+Elapsed time 0.001407 s
+Elapsed time 0.001392 s
+Elapsed time 0.001408 s
+Elapsed time 0.001392 s
+Elapsed time 0.001408 s
+Elapsed time 0.001390 s
+Elapsed time 0.001407 s
+Elapsed time 0.001392 s
+Elapsed time 0.001406 s
+Elapsed time 0.001387 s
+Elapsed time 0.001405 s
+Elapsed time 0.001388 s
+Elapsed time 0.001402 s
+Elapsed time 0.001383 s
+Elapsed time 0.001400 s
+Elapsed time 0.001383 s
+Elapsed time 0.001402 s
+Elapsed time 0.001383 s
+Elapsed time 0.001399 s
+Elapsed time 0.001381 s
+Elapsed time 0.001399 s
+Elapsed time 0.001383 s
+Elapsed time 0.001397 s
+Elapsed time 0.001382 s
+Elapsed time 0.001398 s
+Elapsed time 0.001382 s
+Elapsed time 0.001396 s
+Elapsed time 0.001373 s
+Elapsed time 0.001383 s
+Elapsed time 0.001361 s
+Elapsed time 0.001380 s
+Elapsed time 0.001364 s
+Elapsed time 0.001377 s
+Elapsed time 0.001359 s
+Elapsed time 0.001380 s
+Elapsed time 0.001356 s
+Elapsed time 0.001376 s
+Elapsed time 0.001357 s
+Elapsed time 0.001376 s
+Elapsed time 0.001360 s
+Elapsed time 0.001373 s
+Elapsed time 0.001354 s
+Elapsed time 0.001370 s
+Elapsed time 0.001354 s
+Elapsed time 0.001371 s
+Elapsed time 0.001355 s
+Elapsed time 0.001372 s
+Elapsed time 0.001357 s
+Elapsed time 0.001367 s
+Elapsed time 0.001356 s
+Elapsed time 0.001373 s
+Elapsed time 0.001351 s
+Elapsed time 0.001367 s
+Elapsed time 0.001354 s
+Elapsed time 0.001369 s
+Elapsed time 0.001353 s
+Elapsed time 0.001369 s
+Elapsed time 0.001353 s
+Elapsed time 0.001368 s
+Elapsed time 0.001351 s
+Elapsed time 0.001369 s
+Elapsed time 0.001348 s
+Elapsed time 0.001381 s
+Elapsed time 0.001350 s
+Elapsed time 0.001369 s
+Elapsed time 0.001349 s
+Elapsed time 0.001365 s
+Elapsed time 0.001351 s
+Elapsed time 0.001365 s
+Elapsed time 0.001350 s
+Elapsed time 0.001367 s
+Elapsed time 0.001351 s
+Elapsed time 0.001365 s
+Elapsed time 0.001347 s
+Elapsed time 0.001364 s
+Elapsed time 0.001351 s
+Elapsed time 0.001369 s
+Elapsed time 0.001347 s
+Elapsed time 0.001361 s
+Elapsed time 0.001347 s
+Elapsed time 0.666281 s
+Finnished GOL
+Elapsed time 0.889249 s
+
+Generating profiling report for C
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+ 52.00      0.26     0.26                             generate_IC (common.c:85 @ 402700)
+ 34.00      0.43     0.17                             main (02_gol_gpu_openacc.c:60 @ 4022ca)
+ 10.00      0.48     0.05                             main (02_gol_gpu_openacc.c:59 @ 4022bd)
+  4.00      0.50     0.02                             _init
+

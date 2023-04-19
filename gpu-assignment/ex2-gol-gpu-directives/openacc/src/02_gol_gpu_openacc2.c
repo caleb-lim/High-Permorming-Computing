@@ -103,38 +103,83 @@ void game_of_life_stats(struct Options *opt, int step, int *current_grid){
     fclose(fptr);
 }
 
+void compare(int *cpu, int *gpu, int n, int m){
+    int match = 1;
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+            if (cpu[i*m + j] != gpu[i*m + j]) {
+                match = 0;
+                int error = i*m + j;
+                printf("Error at %d", error);
+            }
+        }
+    }
+
+    if(match == 1){
+         printf("Both matrixes are matching\n");
+    }
+}
+
+
 int main(int argc, char **argv)
 {
     struct Options *opt = (struct Options *) malloc(sizeof(struct Options));
     getinput(argc, argv, opt);
     int n = opt->n, m = opt->m, nsteps = opt->nsteps;
     int *grid = (int *) malloc(sizeof(int) * n * m);
-    int *updated_grid = (int *) malloc(sizeof(int) * n * m);
-
+    int *updated_gpu_grid = (int *) malloc(sizeof(int) * n * m);
+    int *updated_cpu_grid = (int *) malloc(sizeof(int) * n * m);
+    int *gpu_grid = (int *) malloc(sizeof(int) * n * m);
+    int *cpu_grid = (int *) malloc(sizeof(int) * n * m);
 
     int current_step = 0;
     int *tmp = NULL;
     generate_IC(opt->iictype, grid, n, m);
+    gpu_grid = grid;
+    cpu_grid = grid;
 
     struct timeval start, steptime;
     start = init_time();
     while(current_step != nsteps){
         steptime = init_time();
-        game_of_life(opt, grid, updated_grid, n, m);
+        game_of_life(opt, gpu_grid, updated_gpu_grid, n, m);
         // swap current and updated grid
-        tmp = grid;
-        grid = updated_grid;
-        updated_grid = tmp;
+        tmp = gpu_grid;
+        gpu_grid = updated_gpu_grid;
+        updated_gpu_grid = tmp;
         current_step++;
         get_elapsed_time(steptime);
     }
 
-    game_of_life_stats(opt, current_step, grid);
+    game_of_life_stats(opt, current_step, gpu_grid);
     printf("Finnished GOL\n");
     get_elapsed_time(start);
 
+
+    start = init_time();
+    while(current_step != nsteps){
+        steptime = init_time();
+        cpu_game_of_life(opt, cpu_grid, updated_cpu_grid, n, m);
+        // swap current and updated grid
+        tmp = cpu_grid;
+        cpu_grid = updated_cpu_grid;
+        updated_cpu_grid = tmp;
+        current_step++;
+        get_elapsed_time(steptime);
+    }
+    game_of_life_stats(opt, current_step, cpu_grid);
+    printf("Finnished GOL\n");
+    get_elapsed_time(start);
+
+    compare(cpu_grid,gpu_grid,n,m);
+
     free(grid);
-    free(updated_grid);
+    free(updated_gpu_grid);
+    free(updated_cpu_grid);
+    free(gpu_grid);
+    free(cpu_grid);
     free(opt);
     return 0;
 }

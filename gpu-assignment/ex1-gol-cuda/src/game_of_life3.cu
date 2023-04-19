@@ -7,7 +7,7 @@
 
 #define USEPNG
 
-#define NTHREADS 1024
+#define NTHREADS 16
 
 #define CUDA_CHECK_ERROR(X)({\
     if((X) != cudaSuccess){\
@@ -24,15 +24,12 @@
 })
 
 __global__ void game_of_life_step(int *current_grid, int *next_grid, int n, int m){
-    unsigned int idx = blockIdx.x * blockDim.x + threadIdx.x;
-
+    unsigned int i = blockIdx.x * blockDim.x + threadIdx.x;
+    unsigned int j = blockIdx.y * blockDim.y + threadIdx.y;
     int neighbours;
     int n_i[8], n_j[8];
 
-    if (idx < n * m){
-        unsigned int i = idx / m;
-        unsigned int j = idx % m;
-        
+    if (i < n && j < m){
         // count the number of neighbours, clockwise around the current cell.
         neighbours = 0;
         
@@ -63,7 +60,6 @@ __global__ void game_of_life_step(int *current_grid, int *next_grid, int n, int 
         }
 
     }
-
 }
 
 int* game_of_life(const int *initial_state, int n, int m, int nsteps){
@@ -79,8 +75,8 @@ int* game_of_life(const int *initial_state, int n, int m, int nsteps){
     memcpy(grid, initial_state, sizeof(int) * n * m);
 
     // Setup kernel configuration
-    // const int BLOCK_SIZE = 256;
-    unsigned int nBlocks = (n * m + NTHREADS - 1) / NTHREADS;
+    dim3 blockDim(NTHREADS, NTHREADS);
+    dim3 gridDim((n + NTHREADS - 1) / NTHREADS, (m + NTHREADS - 1) / NTHREADS);
 
     // Allocate device memory for the grids
     int *dev_grid, *dev_updated_grid;
@@ -90,28 +86,17 @@ int* game_of_life(const int *initial_state, int n, int m, int nsteps){
     // Copy the grid to the device
     CUDA_CHECK_ERROR(cudaMemcpy(dev_grid, grid, sizeof(int) * n * m, cudaMemcpyHostToDevice));
 
-
-    float elapsed_kernel = 0.0;
     // Run the simulation for nsteps steps
     for(int step = 0; step < nsteps; step++) {
         // Launch the kernel
-        // Start kernel time
-        struct timeval start_kernel = init_time();
-        
-        // Launch the kernel
-        game_of_life_step<<<nBlocks, NTHREADS>>>(dev_grid, dev_updated_grid, n, m);
+        game_of_life_step<<<gridDim, blockDim>>>(dev_grid, dev_updated_grid, n, m);
         CUDA_CHECK_ERROR(cudaGetLastError());
-       
-        // End kernel time
-        elapsed_kernel = get_elapsed_time(start_kernel) + elapsed_kernel;
-        // printf("Step %d: %f ms\n", step, elapsed_kernel);
-       
+
         // Swap the grids
         int *temp = dev_grid;
         dev_grid = dev_updated_grid;
         dev_updated_grid = temp;
     }
-    printf("Time Spent in kernel %f ms\n", elapsed_kernel);
 
     // Copy the final grid back to the host
     CUDA_CHECK_ERROR(cudaMemcpy(grid, dev_grid, sizeof(int) * n * m, cudaMemcpyDeviceToHost));

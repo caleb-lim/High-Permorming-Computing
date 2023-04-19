@@ -19,30 +19,7 @@ ptxas warning : Conflicting options --device-debug and --generate-line-info spec
 
 Running C CUDA
 GPU versionRequesting grid size of (10,10), which requires 0.000000 GB 
-Finnished CUDA in 139.507996 ms
-Finnished GOL in 0.035000 ms
+Time Spent in kernel 0.543000 ms
+Finnished CUDA in 160.656998 ms
+Finnished GOL in 0.530000 ms
 Both matrixes are matching
-Game of Life
-Step 100:
-                              
-                              
-                              
-                         *  * 
-                         *  * 
-                              
-                              
-                              
-                              
-                              
-Game of Life
-Step 100:
-                              
-                              
-                              
-                         *  * 
-                         *  * 
-                              
-                              
-                              
-                              
-                              

@@ -1,0 +1,8 @@
+step CPU: 100 n: 10 m: 10 ----- Frac in state 0 = 0.040000,	Frac in state 1 = 0.960000,	Frac in state 2 = 0.000000,	Frac in state 3 = 0.000000,	 
+step GPU: 100 n: 10 m: 10 ----- Frac in state 0 = 0.040000,	Frac in state 1 = 0.960000,	Frac in state 2 = 0.000000,	Frac in state 3 = 0.000000,	 
+step CPU: 100 n: 100 m: 100 ----- Frac in state 0 = 0.088000,	Frac in state 1 = 0.912000,	Frac in state 2 = 0.000000,	Frac in state 3 = 0.000000,	 
+step GPU: 100 n: 100 m: 100 ----- Frac in state 0 = 0.088000,	Frac in state 1 = 0.912000,	Frac in state 2 = 0.000000,	Frac in state 3 = 0.000000,	 
+step CPU: 100 n: 1000 m: 1000 ----- Frac in state 0 = 0.084719,	Frac in state 1 = 0.915281,	Frac in state 2 = 0.000000,	Frac in state 3 = 0.000000,	 
+step GPU: 100 n: 1000 m: 1000 ----- Frac in state 0 = 0.084719,	Frac in state 1 = 0.915281,	Frac in state 2 = 0.000000,	Frac in state 3 = 0.000000,	 
+step CPU: 100 n: 10000 m: 10000 ----- Frac in state 0 = 0.085062,	Frac in state 1 = 0.914938,	Frac in state 2 = 0.000000,	Frac in state 3 = 0.000000,	 
+step GPU: 100 n: 10000 m: 10000 ----- Frac in state 0 = 0.085062,	Frac in state 1 = 0.914938,	Frac in state 2 = 0.000000,	Frac in state 3 = 0.000000,	 

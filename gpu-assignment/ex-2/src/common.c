@@ -2,52 +2,11 @@
 
 */
 #include "common.h"
-void compare(int *cpu, int *gpu, int n, int m){
-    int match = 1;
-    for(int i = 0; i < n; i++)
-    {
-        for(int j = 0; j < m; j++)
-        {
-            if (cpu[i*n + j] != gpu[i*n + j]) {
-                match = 0;
-                int error = i*m + j;
-                printf("Error at %d", error);
-            }
-        }
-    }
-
-    if(match == 1){
-         printf("Both matrixes are matching\n");
-    }
-}
-
-void convert2D(int **grid, int *array, int n, int m){
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++){
-            grid[i][j] = array[i*m + j];
-        }
-    }
-}
-
-
-void visualisation2D(int **grid, int n, int m){
-    printf("Game of Life\n");
-    for(int i = 0; i < n; i++)
-    {
-        for(int j = 0; j < m; j++)
-        {
-            char cell = ' ';
-            if (grid[i][j] == ALIVE) cell = '*';
-            printf(" %c ", cell);
-        }
-        printf("\n");
-    }
-}
 
 void visualise(enum VisualiseType ivisualisetype, int step, int *grid, int n, int m){
     if (ivisualisetype == VISUAL_ASCII) visualise_ascii(step, grid, n, m);
     if (ivisualisetype == VISUAL_PNG) visualise_png(step, grid, n, m);
-    else visualise_none();
+    else visualise_none(step);
 }
 
 /// ascii visualisation
@@ -115,7 +74,8 @@ void visualise_png(int step, int *grid, int n, int m){
 #endif
 }
 
-void visualise_none(){
+void visualise_none(int step){
+    printf("Game of Life, Step %d:\n", step);
 }
 
 /// generate random IC
@@ -138,14 +98,15 @@ struct timeval init_time(){
     return curtime;
 }
 /// get the elapsed time relative to start, return current wall time
-float get_elapsed_time(struct timeval start){
+struct timeval get_elapsed_time(struct timeval start){
     struct timeval curtime, delta;
     gettimeofday(&curtime, NULL);
-    timersub(&curtime, &start, &delta);
-    float elapsed = delta.tv_sec * 1000.0f + delta.tv_usec / 1000.0f;
-    return elapsed;
+    delta.tv_sec = curtime.tv_sec - start.tv_sec;
+    delta.tv_usec = curtime.tv_usec - start.tv_usec;
+    double deltas = delta.tv_sec+delta.tv_usec/1e6;
+    printf("Elapsed time %f s\n", deltas);
+    return curtime;
 }
-
 
 /// UI
 void getinput(int argc, char **argv, struct Options *opt){
