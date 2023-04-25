@@ -37,8 +37,10 @@ def plot(infile, outfile,
     # select only the rows that have the required number of cores
     # remember that the first line a header line and should be skipped
     for line in open(infile).readlines()[1:]:
+        print(f"Line: {line}")
         # extract the required data
         s,c,n = map(int, line.split(','))
+        print(f's:{s} c:{c} n:{n}')
         if c == cores:
             seed.append(s)
             nsrc.append(n)
@@ -47,11 +49,14 @@ def plot(infile, outfile,
     seed = np.array(seed)[order]
     nsrc = np.array(nsrc)[order]
 
+    print(seed,nsrc)
+
     fig = pyplot.figure(figsize=(8,5))
     ax = fig.add_subplot(1,1,1)
     ## create a plot with x=seed, y=nsrc
     ax.plot(seed,nsrc)
     ## put appropriate labels on the plot
+    ax.set_title(f"Core: {cores}")
     ax.set_xlabel('Seed (SNR)')
     ax.set_ylabel('Sources found')
     pyplot.savefig(outfile)
@@ -71,6 +76,7 @@ if __name__=="__main__":
 
     params = parser.parse_args()
 
+    print(params.infile, params.outfile, params.cores)
     # check that the input and output are both defined, and print help if not
     if None in (params.infile, params.outfile):
         parser.print_help()
