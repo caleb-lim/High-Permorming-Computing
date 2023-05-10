@@ -1,0 +1,49 @@
+========================================================= 
+GOL Running with following 
+========================================================= 
+Requesting grid size of (10000,10000), which requires 0.372529 GB 
+Number of steps 10 
+IC type 0 
+Visualization type -1 
+Neighbour rule type 0 
+Boundary rule type 0 
+========================================================= 
+ 
+========================================================= 
+Core binding report:
+ On node topaz-1 : MPI Rank 0 :  Thread 0 :  Core affinity = 0-15 
+========================================================= 
+ 
+========================================================= 
+Memory Usage @ Function report_runtime_state @ 354 
+ (VM, Peak VM, RSS, Peak RSS) = (10836, 10836, 700, 700) kilobytes 
+========================================================= 
+ 
+========================================================= 
+Memory Usage @ Function generate_IC @ 301 
+ (VM, Peak VM, RSS, Peak RSS) = (792092, 792092, 391452, 391452) kilobytes 
+========================================================= 
+ 
+Game of Life, Step 0:
+Elapsed time 0.477803 s
+Game of Life, Step 1:
+Elapsed time 0.429417 s
+Game of Life, Step 2:
+Elapsed time 0.423065 s
+Game of Life, Step 3:
+Elapsed time 0.413551 s
+Game of Life, Step 4:
+Elapsed time 0.439040 s
+Game of Life, Step 5:
+Elapsed time 0.406887 s
+Game of Life, Step 6:
+Elapsed time 0.422009 s
+Game of Life, Step 7:
+Elapsed time 0.396608 s
+Game of Life, Step 8:
+Elapsed time 0.401383 s
+Game of Life, Step 9:
+Elapsed time 0.411900 s
+Finnished GOL
+Elapsed time 4.221831 s
+Running with OpenMP and 5 threads

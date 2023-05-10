@@ -1,0 +1,154 @@
+\documentclass[11pt]{amsart}
+\usepackage{geometry}
+\geometry{a4paper, left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+%\usepackage{tikz}
+\usepackage{amssymb}
+%\usepackage{epstopdf}
+\usepackage{minted}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+\usepackage{comment}
+\title[OpenMP]{OpenMP Assignment}
+\author[]{Dr. Pascal Elahi (PawseySC)}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\pagestyle{plain}
+\input{hpc-curtin-gol-info}
+
+\newpage
+\section{Assessable Tasks}\label{sec:tasks}
+\subsection*{How to start?\nopunct\\} \label{sec:tasks:staring}
+For each task, start by profiling the code using \texttt{gprof}. This will allow you to identify where most of the time is spent. Try using large grid sizes (within reason). With this profiling information, you should be able to identify what should be parallelised. Look at the code itself and make sure you understand the algorithm.
+
+Copy the original serial source file to \texttt{02\_cpu\_openmp\_loop} and \texttt{02\_cpu\_openmp\_task} and try compiling the code
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\begin{minted}[frame=single,]{sh}
+# for C
+cp src/01_cpu_serial.c src/02_cpu_openmp_loop.c
+cp src/01_cpu_serial.c src/02_cpu_openmp_task.c
+make cpu_openmp_cc
+# for Fortran
+cp src/01_cpu_serial_fort.f90 src/02_cpu_openmp_loop_fort.f90
+cp src/01_cpu_serial_fort.f90 src/02_cpu_openmp_task_fort.f90
+make cpu_openmp_fort
+\end{minted}
+\end{minipage}
+\end{center}
+Profile the code (for zeus, where we make sure to load a recent gcc compiler with \texttt{module swap gcc gcc/8.3.0}).
+Here the example is for building on magnus.
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\begin{minted}[frame=single,]{sh}
+# compile
+make COMPILERTYPE=CRAY PROFILER=ON cpu_openmp_loop_cc
+# run two steps of a moderately large 100x100 grid
+./bin/02_cpu_openmp_loop 100 100 2
+# profile
+gprof -lbp ./bin/02_cpu_openmp_loop gmon.out > analysis.txt
+\end{minted}
+\end{minipage}
+\end{center}
+Look at the output produced by the code as well as the output of the profiling.
+
+The code provides summary statistics per step that depend only on the grid size and the step, saved as {\color{blue}\texttt{GOL-stats.txt}}. The code also writes to standard out, so when running save the output to meaningful log files. Similarly save the stats file to a meaning filename
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\begin{minted}[frame=single,]{sh}
+# lets set some variables for a run. Here numbers are examples only.
+nomp=2
+nxgrid=100
+nygrid=100
+nsteps=2
+# set some meaningful name. Could be reference, latests, etc.
+someversionname=reference
+# set a base name
+basename=GOL-${someversionname}.nomp-${nomp}.ngrid-${nxgrid}x${nygrid}.${nsteps}
+export OMP_NUM_THREADS=${nomp}
+./bin/02_cpu_openmp_loop ${nxgrid} ${nygrid} ${nsteps} > ${basename}.log
+mv GOL-stats.txt ${basename}.stats.txt
+\end{minted}
+\end{minipage}
+\end{center}
+In this way, you can compare results as you update the code, change the number of threads, change versions, etc and keep track of changes in performance and compare results.
+
+\subsection{{\color{Red} Preliminaries}: Correct Loop Ordering\nopunct\\}\label{sec:tasks:loop}
+Both the C and Fortran codes do not have optimal do/for loops for the game of life grid. Please look at the code and update these loops to reduce cache misses (revisit material on serial optimisation if you are unclear about cache misses). Show that there is an improvement in the performance.
+
+\subsection{{\color{Red} Principle Task}: Implement OpenMP Parallelism\nopunct\\}\label{sec:tasks:omp}
+Perform an OpenMP parallelisation of the serial code, test performance and scaling. There are two main approaches, {\color{Orange}\textbf{Loop}} and {\color{Orange}\textbf{Task}} parallelism. This source code should be called \texttt{02\_cpu\_openmp\_loop.c} or \texttt{02\_cpu\_openmp\_loop\_fort.f90} (if using fortran) or for task parallelism or \texttt{02\_cpu\_openmp\_task.c} or \texttt{02\_cpu\_openmp\_task\_fort.f90} (if using fortran).
+
+The code should contain extensive \textbf{\textit{comments}}, noting what you are doing \textit{and why}. I will compile your code using the appropriate \texttt{make} command.
+{\centering \textit{You must show that the code produces correct results regardless of the number of OpenMP threads used. This can be checked with visualisation and also summary statistics.}}
+
+\subsection{{\color{Red}Secondary Task}: Scaling Tests\nopunct\\}\label{sec:tasks:scaling}
+Test how the code scales with number of threads and also problem size and discuss the observed behaviour. Start with 10x10 and increase the problem to 10000x10000 (or larger if you have the available memory). Increase the number of OpenMP threads from 1 to 16 (taking note of the number of actual logical cores on the system). Note that visualising each step significantly impacts the speed of the program, so we suggest running with visualisation turned off (that is provide an extra argument of \texttt{0 -1} so that the IC is the standard random IC but no visualisation is done.
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\begin{minted}[frame=single,]{sh}
+./bin/02_cpu_openmp_loop ${nxgrid} ${nygrid} ${nsteps} 0 -1
+\end{minted}
+\end{minipage}
+\end{center}
+Compare your results and explain the scaling seen both with problem size and number of threads. Please keep in mind that when running the scaling tests, submit sbatch jobs requesting exclusive access to a node on zeus by requesting all the resources and perform several tests.
+
+\section{{\color{Blue}What you need to hand in\nopunct\\}}\label{sec:handin}
+
+You must submit a zip (or tar) file containing:
+\begin{itemize}
+\item Your code within the repository so that it can be easily compiled. Make it clear which type of OpenMP parallelisation you have implemented.
+\item A pdf of your code so that I can read it and the comments associated with the changes you have made. Remember to be verbose!
+\item A pdf report discussing the OpenMP parallelisation of the code. Details of what should be in the report are outlined below.
+\end{itemize}
+
+\subsection*{Report\nopunct\\}\label{sec:handin:report}
+\noindent Your report should contain the following sections:
+  \begin{enumerate}
+  \item{\textbf{Intro} : Describe language chosen, compilers used, any additional compilation flags used such as optimisation. Describe choice of parallelism used (if applicable).} 
+  \item{\textbf{Profiling} : Profile the code and discuss the results.}
+  \item{\textbf{Correctness} : Show code compiles and still produces correct results compared to serial version. Ensure that all 
+functionality of the code remains intact. If you wish, you can add functionality.}
+  \item{\textbf{Implementation} : Describe and discuss implementation, all choices and any testing that has driven a choice.}
+  \item{\textbf{Scalability} : Test how the code performs, show scaling of code and discuss results.}
+  \item{\textbf{Code} : Highlight changes to code.}
+\end{enumerate}
+
+\subsection*{Marks\nopunct\\}\label{sec:handin:marks}
+\noindent The assignment is marked out of \textbf{30}. The marks are awarded as follows:
+\begin{itemize}
+  \item{\textbf{Correctness} : The code must compile and produce the correct result. \textbf{Otherwise a factor of 1/2 will be applied to the total mark.}}
+  \item{\textbf{Profiling} : Out of 2}
+  \item{\textbf{Implementation} and \textbf{Code}: Out of 20}
+  \item{\textbf{Scalability}: Out of 8}
+\end{itemize}
+
+\noindent{\color{CornflowerBlue}BONUS}: \textit{If Both Task and Loop are implemented, bonus marks will be awarded.}
+
+  %\item {\color{CornflowerBlue}BONUS}: Discuss how does thread affinity affects performance.
+  %\item {\color{CornflowerBlue}BONUS}: Show that the code is also vectorised and how this affects performance.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{2}
+
+\bibitem{gol}
+Gardner, Martin (October 1970), \textbf{Mathematical Games - The Fantastic Combinations of John Conway's New Solitaire Game 'Life'}, Scientific American (223): 120–123. \href{doi:10.1038/scientificamerican1070-120}{doi:10.1038/scientificamerican1070-120}
+
+\bibitem{gol-wiki}
+\href{https://en.wikipedia.org/wiki/Conway\%27s_Game_of_Life}{https://en.wikipedia.org/wiki/Conway\%27s\_Game\_of\_Life} and references therein.
+
+\bibitem{enzo} Bryan, G.~L., Norman, M.~L., O'Shea, B.~W., et al.\ 2014, \textit{Astrophysical Journal Supplementary Series}, 211, 19. doi:10.1088/0067-0049/211/2/19
+
+\end{thebibliography}
+
+\end{document}

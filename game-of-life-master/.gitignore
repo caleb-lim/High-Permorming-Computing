@@ -1,0 +1,13 @@
+*~
+.vscode
+bin/*
+obj/*
+GOL-stats.txt
+GOL*png
+assignment/*pdf
+assignment/*aux
+assignment/*out
+assignment/*log
+assignment/*pyg
+*.mod
+*.mp4

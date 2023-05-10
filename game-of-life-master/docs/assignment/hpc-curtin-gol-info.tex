@@ -1,0 +1,236 @@
+The assignment is to use the \textbf{Game of Life}(GOL) \footnote{See \cite{gol-wiki} and the references therein. Try playing it at \href{https://playgameoflife.com/}{playgameoflife.com}} as the basis for exploring parallel programming. 
+
+This document contains:
+\begin{enumerate}
+	\item[\S\ref{sec:gol}:] An overview of the Game-of-Life. If familiar with GOL, please continue to \S\ref{sec:code}.
+	\item[\S\ref{sec:code}:] An overview of the code repository. 
+	\item[\S\ref{sec:tasks}:] The assessable tasks.
+\end{enumerate}
+
+\section{Game of Life}\label{sec:gol}
+The Game of Life is a cellular automaton devised by the British mathematician John Horton Conway in 1970\cite{gol}. It is a zero-player game, with the game's evolution determined completely by its initial state. A player interacts by creating an initial configuration and observing how it evolves. The game is simple: there is a 2D grid where each cell in the grid can either be alive or dead at any one time. The state of the system at the next time step is determined from the number of nearest neighbours each cell has at the present time (see Fig.\ref{fig:gol}). The evolution of the grid resembles cells moving on a plane. 
+\begin{figure}[!h]	
+	\centering
+	\fbox{\includegraphics[width=0.2\textwidth, valign=c]{figs/GOL.grid-500-by-500.step-0010.png}}
+	\fbox{\includegraphics[width=0.2\textwidth, valign=c]{figs/GOL.grid-500-by-500.step-0019.png}}
+	\includegraphics[width=0.1\textwidth, valign=B]{figs/neighbour}
+	\caption{The Game of Life. An example of a large grid at two different times (separated by 9 steps) is shown in the left and middle panels. Here live cells are in black, dead are white. The evolution of the grid is governed by the birth and death of cells, where a cell's state is defined by its 8 neighbouring cells (right panel).}
+	\label{fig:gol}
+\end{figure}
+\par 
+The rules for evolving a system to the next time level are as follows:
+\begin{itemize}
+	\item {\color{ForestGreen}new cell born} if the cell has exactly three live neighbours - \textbf{\color{ForestGreen} ready to breed}.
+	\item {\color{CornflowerBlue}state of cell unchanged} if the cell has exactly two live neighbours - \textbf{\color{CornflowerBlue}content}.
+	\item {\color{Red}dies or stays dead} if the cell has $<2$ live neighbours - \textbf{\color{Red}lonely}.
+	\item {\color{Red}dies or stays dead} if the cell has $>3$ live neighbours - \textbf{\color{Red}overcrowding}.
+\end{itemize}
+
+\par 
+These rules are set so as to generate an equilibrium between living and dead cells. One can explore how altering the rules can affect the evolution of the system. To lax a {\color{ForestGreen} ready to bread} rule coupled with large amounts of {\color{Red}overcrowding allowed} can give rise to grids that quickly fill up with cells only to collapse entirely. 
+
+\subsection{The ``Life'' in GOL} 
+Using this fairly simple set of rules, some fairly complex structures can emerge\footnote{a nice list of types of structures is found on \href{https://en.wikipedia.org/wiki/Conway\%27s_Game_of_Life}{Wikipedia}}. The game is in fact Turing complete and can simulate a universal constructor or any other Turing machine. We highlight some common structures found in a typical game in Fig.\ref{fig:gol-structures}.
+
+\begin{figure}[!h]	
+	\centering
+	\includegraphics[height=0.06\textwidth, valign=c]{figs/Game_of_life_loaf.png}
+	\includegraphics[height=0.17\textwidth, valign=c]{figs/Game_of_life_pulsar.png}
+	\includegraphics[height=0.06\textwidth, valign=c]{figs/Game_of_life_animated_glider.png}
+    \includegraphics[height=0.11\textwidth, valign=c]{figs/Game_of_life_glider_gun.svg.png}
+	\caption{Structures in GOL: We show an example of still life (left); oscillating life (middle); travelling life, so-called spaceships (right); and a constructor that generates gilder spaceships (bottom).}
+	\label{fig:gol-structures}
+\end{figure}
+
+GOL may appear chaotic and can remain chaotic for long periods of time (even indefinitely) before settling into a combination of still lifes, oscillators, and spaceships. GOL is in fact undecidable, that is given an initial pattern and a later pattern, no algorithm exists that can tell whether the later pattern is ever going to appear using this IC. This is a corollary of the halting problem: the problem of determining whether a given program will finish running or continue to run forever from an initial input. 
+\par 
+The undecidability of the game depends on the rules and the dimensionality of the grid. For instance, increasing the dimension from 2 to 3 means that the rule for equilibrium goes from 2 neighbours out of 8 to 2 out of 26. You can try exploring the impact rules have on the game using the provided code repository discussed in the following section. 
+
+\subsection{Grid-based simulations}
+\label{sec:gol:gridsims}
+At a basic level, \textbf{GOL} is a simulation of the temporal evolution of a 2-D grid. The rules governing the "life" can be arbitrarily complex and the grid need not be just two dimensional. If one changes a cell from just being alive or dead to having a complex internal state, increases the complexity of the rules and adds one more dimension,  \textit{you would have gone from GOL to any number of grid-based codes that are used to model physical processes}. This simple grid-based program should be viewed as the first step in writing more complex grid-based codes. 
+
+\par 
+As an example, ENZO (\cite{enzo}, repository is located \href{https://github.com/enzo-project/enzo-dev}{here}) is a Adaptive Mesh Refinement (AMR) code using Cartesian coordinates which can be run in one, two, and three dimensions, and supports a wide variety of physics including hydrodynamics, ideal and non-ideal magnetohydrodynamics. GOL would be equivalent to running ENZO in two dimensions where the "fluid" moves on the 2-D surface based on highly simplified equations. 
+
+\section{Code Repository}\label{sec:code}
+The code that forms the basis of the assignment is found on the course website. This repository contains the following 
+\begin{itemize}
+	\item basic files like a README, License
+	\item \texttt{Makefile} setup to compile codes with a variety of different flags and features. For a quick tutorial on GNU Make, see \href{https://www.gnu.org/software/make/}{here}. Students are expected to be familiar with Make and the associated commands. Please familiarise yourself with this material. 
+	\item Source code in \texttt{src/*c} (\texttt{C/C++}) and \texttt{src/*f90} (\texttt{Fortran}). We expect students to be familiar with \texttt{C/C++} and/or \texttt{Fortran}. All the source code provided is written in \texttt{C} and \texttt{Fortran}. Fortran source codes are noted by having \texttt{\_fort.f90} endings. Please feel free to change the make file to use a \texttt{C++} compiler when compiling the c codes and use C++ syntax if you so desire. 
+	\item documentation and \LaTeX\ source code in \texttt{docs}
+	\item a script to produce movies from png files when visualising with the PNG library. 
+\end{itemize}
+To familiarise yourself with the contents you can see what make options are available and browse the source directory. 
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\small
+\begin{minted}[frame=single,]{sh}
+make allinfo # provides all the information of the commands listed below  
+make configinfo # provides the different options available 
+make makecommands # what you can make by typing these commands
+make buildinfo # current compilers used
+\end{minted}
+\end{minipage}
+\end{center}
+You'll note that the make file is setup to accept command line arguments that can set compiler families such as \texttt{GCC}, \texttt{CRAY} when you type \texttt{make configinfo}. Try the following
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\small
+\begin{minted}[frame=single,]{sh}
+# use the GNU CC family of compilers, gcc, g++, & gfortran AND 
+# compile the serial version of the code, both C and Fortran sources.
+make COMPILERTYPE=GCC cpu_serial 
+# use the intel family of compilers and compile the openmp source codes (if present)
+make COMPILERTYPE=INTEL cpu_openmp 
+# use Cray compilers (useful for systems like magnus) and just compile the C sources 
+make COMPILERTYPE=CRAY cpu_openmp_cc 
+\end{minted}
+\end{minipage}
+\end{center}
+Note that the code does require recent compilers so on machines such as zeus make sure to load a recent gcc compiler using commands such as \texttt{module swap gcc gcc/8.3.0})
+
+
+\subsection{Source}
+The common function calls with interface is provided in \texttt{src/common.*}, provide functions like visualising GOL, getting timing information, etc. We recommend students have a look at the prototypes in \texttt{src/common.h}. The key functions are:
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\small
+\begin{minted}[frame=single,]{c}
+/// visualise the game of life
+void visualise(enum VisualiseType ivisualisechoice, int step, int *grid, int n, int m);
+/// generate IC
+void generate_IC(enum ICType ic_choice, int *grid, int n, int m);
+/// UI
+void getinput(int argc, char **argv, struct Options *opt);
+///GOL stats protoype
+void game_of_life_stats(struct Options *opt, int steps, int *current_grid);
+/// GOL prototype
+void game_of_life(struct Options *opt, int *current_grid, int *next_grid, int n, int m);
+\end{minted}
+\end{minipage}
+\end{center}
+The \texttt{Fortran} source of \texttt{src/common\_fort.f90} provides a module with the same set of interfaces and subroutines. 
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\small
+\begin{minted}[frame=single,]{fortran}
+module gol_common
+    !   ascii visualisation
+    subroutine visualise_ascii(step, grid, n, m)
+    ! png visualisation
+    subroutine visualise_png(step, grid, n, m)
+    ! no visualisation
+    subroutine visualise_none()
+    ! visualisation routine
+    subroutine visualise(ivisualisechoice, step, grid, n, m)
+    ! generate random IC
+    subroutine generate_rand_IC(grid, n, m)
+    ! generate IC
+    subroutine generate_IC(ic_choice, grid, n, m)
+    ! UI
+    subroutine getinput(opt)
+    ! get some basic timing info
+    real*8 function init_time()
+    ! get the elapsed time relative to start
+    subroutine get_elapsed_time(start)
+end module
+\end{minted}
+\end{minipage}
+\end{center}
+
+
+The main program consists of (here we just highlight the \texttt{C} source as the \texttt{Fortran} source is similar): 
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\begin{minted}[frame=single,]{c}
+int main(int argc, char **argv)
+{
+    struct Options *opt = (struct Options *) malloc(sizeof(struct Options));
+    getinput(argc, argv, opt);
+    // allocate some memory 
+    ... 
+    // generate initial conditions 
+    generate_IC(opt->iictype, grid, n, m);
+    // start GOL while loopt 
+    while(current_step != opt->nsteps){
+        visualise(opt->ivisualisetype, current_step, grid, n, m);
+        game_of_life_stats(opt, current_step, grid);
+        game_of_life(opt, grid, updated_grid, n, m);
+        // swap current and updated grid
+        tmp = grid;
+        grid = updated_grid;
+        updated_grid = tmp;
+        current_step++;
+    }
+    // free mem
+    ...
+}
+\end{minted}
+\begin{comment}
+\begin{minted}{fortran}
+! Fortran code 
+program GameOfLife
+    use gol_common 
+    implicit none
+    ... 
+    ! get input 
+    call getinput(opt)
+    ! allocate some mem
+    ...
+    ! generate IC
+    call generate_IC(opt%iictype, grid, n, m)
+    do while (current_step .ne. nsteps)
+        call visualise(opt%ivisualisetype, current_step, grid, n, m);
+        call game_of_life_stats(opt, current_step, grid);
+        call game_of_life(opt, grid, updated_grid, n, m);
+        ! update current grid
+        grid(:,:) = updated_grid(:,:)
+        current_step = current_step + 1
+    end do 
+    ! deallocate mem 
+    ..
+end program GameOfLife
+\end{minted}
+\end{comment}
+\end{minipage}
+\end{center}
+Implementations of the {\color{blue}\texttt{game\_of\_life}} and {\color{blue}\texttt{game\_of\_life\_stats}} functions can be found in \texttt{src/01\_cpu\_serial.c} (\& \texttt{src/01\_cpu\_serial\_fort.f90}). Familiarise yourself with these functions (based on your language of choice).  
+
+\par 
+Running the code is relatively simple.  
+\begin{center}
+\begin{minipage}{0.95\textwidth}
+\small
+\begin{minted}[frame=single,]{sh}
+make cpu_serial
+./bin/01_cpu_serial 
+"Usage: ./bin/01_gol_cpu_serial <grid height> <grid width> "
+  "[<nsteps> <IC type> <Visualisation type> <Rule type> <Neighbour type>"
+  "<Boundary type> <stats filename>]"
+./bin/01_cpu_serial 500 500 4 # run a 500x500 grid for 4 steps giving 
+\end{minted}
+	\fbox{\includegraphics[width=0.2\textwidth, valign=c]{figs/GOL.grid-500-by-500.step-0000.png}}
+	\fbox{\includegraphics[width=0.2\textwidth, valign=c]{figs/GOL.grid-500-by-500.step-0001.png}}
+	\fbox{\includegraphics[width=0.2\textwidth, valign=c]{figs/GOL.grid-500-by-500.step-0002.png}}
+	\fbox{\includegraphics[width=0.2\textwidth, valign=c]{figs/GOL.grid-500-by-500.step-0003.png}}
+\\	PNG Visualisation of output from GOL. FIlled black squares are living cells.
+\end{minipage}
+\end{center}
+
+\subsection{Compiling on Pawsey systems}
+The serial c and fortran codes will compile with all compilers on \texttt{magnus} so long as the appropriate compiler for the given programming environment is chosen. The make commands to use are 
+\begin{itemize}
+    \setlength{\itemindent}{70pt}
+    \item[\texttt{PrgEnv-cray}:\quad]{\texttt{make COMPILERTYPE=CRAY}}
+    \item[\texttt{PrgEnv-gnu}:\quad]{\texttt{make COMPILERTYPE=CRAY-GNU}}
+    \item[\texttt{PrgEnv-intel}:\quad]{\texttt{make COMPILERTYPE=CRAY-INTEL}}
+\end{itemize}
+On other machines that do not make use of the Cray compiler wrappers, it is just a matter of specifying the appropriate compiler such as \texttt{make COMPILERTYPE=GNU} for \texttt{gnu} compilers.
+
+\subsection{Expanded Rules}
+Although not required for the assignment, you can alter the rules of the game, changing the number of neighbours that decide certain states, even expand the number of neighbours used and change the boundary conditions. A sample of the serial code structured to easily alter the rules for the game is \texttt{src/01\_gol\_serial\_expanded.c}.
+
+\par 
+This particular version of the code is an excellent start point for implementing far more complex rules, such as those governing the flow of a fluid or the diffusion of a gas across a surface.  

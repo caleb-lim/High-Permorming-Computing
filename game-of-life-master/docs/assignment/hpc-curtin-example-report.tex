@@ -1,0 +1,43 @@
+\documentclass[11pt]{amsart}
+\usepackage{geometry}
+\geometry{a4paper, left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+%\usepackage{tikz}
+\usepackage{amssymb}
+%\usepackage{epstopdf}
+\usepackage{minted}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\usepackage{comment}
+\title[OpenMP]{Example Report}
+\author[]{}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\pagestyle{plain}
+
+\section{Preliminaries}\label{sec:prelims}
+Describe language chosen, compilers used, parallelism used (if applicable). 
+
+\section{Correctness}\label{sec:correctness}
+Show code still produces correct results compared to serial version. 
+
+\section{Implementation}\label{sec:implementation}
+Describe implementation.
+
+\section{Scalability}
+Show scaling of code. 
+
+\section{Code}
+Highlight changes to code. 
+
+\end{document}  

@@ -1,0 +1,873 @@
+    1  ls
+    2  ls
+    3  git clone
+    4  git clone https://github.com/PawseySC/gpu-programming-essentials.git
+    5  ls
+    6  cd gpu-programming-essentials/query
+    7  ls
+    8  cd gpu-programming-essentials/
+    9  ls
+   10  cat setup.bash
+   11  sbatch --reservation=CurtinHPC setup.bash
+   12  squeue -u caleblim
+   13  cat slurm-408427.out
+   14  sbatch --reservation=CurtinHPC setup.bash
+   15  squeue -u caleblim
+   16  cat slurm-408444.out
+   17  sbatch --reservation=CurtinHPC setup.bash
+   18  ls
+   19  sbatch --reservation=CurtinHPC setup.bash
+   20  cat slurm-408635.out
+   21  sbatch --reservation=CurtinHPC setup.bash
+   22  cat slurm-408639.out
+   23  sbatch --reservation=CurtinHPC setup.bash
+   24  cat slurm-408669.out
+   25  sbatch --reservation=CurtinHPC setup.bash
+   26  cat slurm-408671.out
+   27  sbatch --reservation=CurtinHPC setup.bash
+   28  cat slurm-408673.out
+   29  sbatch --reservation=CurtinHPC setup.bash
+   30  cat slurm-408676.out
+   31  squeue -u caleblim
+   32  sbatch --reservation=CurtinHPC setup.bash
+   33  cat slurm-408690.out
+   34  sbatch --reservation=CurtinHPC setup.bash
+   35  cat slurm-408694.out
+   36   cd $MYSCRATCH
+   37  ls
+   38  dir
+   39  echo $MYSCRATCH
+   40  git clone --single-branch --branch topaz https://github.com/PawseySC/sc20-gpu-offloading.git
+   41  ls
+   42  cd sc20-gpu-offloading
+   43  ls
+   44  echo $MYSCRATCH
+   45  ls
+   46  cd sc20-gpu-offloading/
+   47  cd 1_serial/
+   48  sbatch --reservation=CurtinHPC --account=courses0100 submit_monitor.sh
+   49  Submitted batch job 981891
+   50  sbatch --reservation=CurtinHPC --account=courses0100 run.slurm
+   51  squeue --me
+   52  ls
+   53  cat slurm-416847.out 
+   54  sacct
+   55  cd ..
+   56  cd 2_profiling/
+   57  bash-4.2$ make -f makefile.gprof
+   58  gcc -pg -g -c -o laplace.o laplace.c
+   59  make -f makefile.gprof
+   60   make -f makefile.gprof
+   61  make -f makefile.gprof
+   62  gcc -pg -g -c -o laplace.o laplace.c
+   63  gcc -pg -g  -o laplace laplace.o
+   64  srun -n 1 -u ./laplace 4000
+   65  ls
+   66  sbatch --reservation=CurtinHPC --account=courses0100 run.slurm
+   67  squeue --me
+   68  tail -f slurm-416877.out 
+   69  cd ..
+   70  cd 3_loops/
+   71  ls
+   72  cd openacc/
+   73  ls
+   74  sbatch --reservation=CurtinHPC --account=courses0100 run.slurm
+   75  squeue --me
+   76  ls
+   77  squeue --me
+   78  tail -f slurm-416877.out 
+   79  tail -f slurm-4169224.out 
+   80  tail -f slurm-416924.out 
+   81  ls
+   82  cd ..
+   83  cd ,,
+   84  cd ..
+   85  cd 4_data/
+   86  ls
+   87  cd openacc
+   88  srun -u -n 1 nvprof ./laplace_mp 4000
+   89  ls
+   90  sbatch --reservation=CurtinHPC --account=courses0100 run.slurm
+   91  squeue --me
+   92  tail -f slurm-417010.out.out 
+   93  tail -f slurm-417010.out
+   94  sbatch --reservation=CurtinHPC --account=courses0100 run.slurm
+   95  tail -f slurm-417010.out
+   96  ls
+   97  cd ls
+   98  cd ..
+   99  ls
+  100  cd ..
+  101  ls
+  102  cd ..
+  103  ls
+  104  cd scratch
+  105  ls
+  106  cd courses0100
+  107  ls
+  108  cd caleblim/
+  109  ls
+  110  cd High-Permorming-Computing/
+  111  ls
+  112  cd gpu-assignment/
+  113  ls
+  114  cd ex1-gol-cuda/
+  115  ls
+  116  sbatch --reservation=CurtinHPC --account=courses0100 submit_monitor.sh
+  117  sbatch --reservation=CurtinHPC --account=courses0100 Makefile
+  118  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  119  cat setup.bash
+  120  ls
+  121  cd src
+  122  ls
+  123  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  124  sqeue
+  125  squeue
+  126  squeue --me
+  127  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  128  squeue --me
+  129  cd ..
+  130  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  131  echo $PATH
+  132  ls
+  133  echo $HOME
+  134  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  135  srun -n <num_tasks> bin/game_of_life_cuda_c
+  136  srun -n 1 bin/game_of_life_cuda_c
+  137  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  138  pwd
+  139  ls
+  140  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  141  ls
+  142  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  143  make allinfo
+  144  make COMPILERTYPE=CRAY PROFILER=ON cpu_openmp_loop_cc
+  145  make allinfo
+  146  make configinfo
+  147  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  148  make
+  149  sbatch --reservation=CurtinHPC --account=courses0100 setup.bash
+  150  tail slurm-423016.out 
+  151  tail slurm-423016.out -n 400
+  152  git branch
+  153  ls
+  154  cd ../..
+  155  ls
+  156  git branch
+  157  git clone https://github.com/caleb-lim/High-Permorming-Computing.git
+  158  git branch
+  159  git High-Permorming-Computing/
+  160  cd High-Permorming-Computing/
+  161  git add .
+  162  git commit -m "Assignment 1"
+  163   git config --global user.email
+  164   git config --global user.email calebzlim@gmail.com
+  165   git config --global user.name caleblim
+  166  git commit -m "Assignment 1"
+  167  ls
+  168  cd ..
+  169  ls
+  170  cd ..
+  171  ls
+  172  cd ..
+  173  ls
+  174  cd ..
+  175  ls
+  176  cd ..
+  177  ls
+  178  cd scratch
+  179  cd courses0100
+  180  cd caleblim/
+  181  ls
+  182  cd ..
+  183  ls
+  184  cd caleblim/
+  185  ls -a
+  186  cd High-Permorming-Computing/
+  187  ls -a
+  188  rm .git
+  189  cd .git
+  190  ls
+  191  vim config
+  192  ls
+  193  cd High-Permorming-Computing/
+  194  ls
+  195  cd High-Permorming-Computing/
+  196  ls
+  197  cd gpu-assignment/
+  198  ls
+  199  cd ex1-gol-cuda/
+  200  LS
+  201  ls
+  202  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  203  cat slurm-423062.out 
+  204  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  205  cat slurm-423067.out 
+  206  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  207  cat slurm-423067.out 
+  208  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  209  vim game_of_life.cu
+  210  ls
+  211  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  212  cd ..
+  213  ls
+  214  cd ex2-gol-gpu-directives/
+  215  ls
+  216  cd openacc/
+  217  ls
+  218  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  219  cd ..
+  220  ls
+  221  cd ..
+  222  ls
+  223  cd gpu-assignment/
+  224  cd ex1-gol-cuda/
+  225  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  226  ls
+  227  cd High-Permorming-Computing/
+  228  ls
+  229  ls -a
+  230  rm .git
+  231  git clone https://github.com/caleb-lim/High-Permorming-Computing.git
+  232  git remote add origin https://github.com/caleb-lim/High-Permorming-Computing.git
+  233  echo "# High-Permorming-Computing" >> README.md
+  234  ls
+  235  git add README.md
+  236  cd High-Permorming-Computing/
+  237  ls
+  238  git add README.md
+  239  echo "# High-Permorming-Computing" >> README.md
+  240  l
+  241  ls
+  242  git add README.md
+  243  git commit -m "first commit"
+  244  git branch -M main
+  245  git remote add origin https://github.com/caleb-lim/High-Permorming-Computing.git
+  246  git push -u origin main
+  247  git add .
+  248  git add -all
+  249  git add --all
+  250  git commit -m "Initial Files"
+  251  git push orgin
+  252  git push -u origin main
+  253  cd High-Permorming-Computing/High-Permorming-Computing/gpu-assignment/
+  254  ls
+  255  git push -u origin main
+  256  cd High-Permorming-Computing/High-Permorming-Computing/gpu-assignment/
+  257  git push -u origin main
+  258  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  259  cd ex1-gol-cuda/
+  260  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  261  sbatch --reservation=CurtinHPC --account=courses0100 run.sh\
+  262  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  263  ls
+  264  cd High-Permorming-Computing/
+  265  ls
+  266  cd High-Permorming-Computing/
+  267  ls
+  268  cd gpu-assignment/
+  269  cd ex1-gol-cuda/
+  270  ls
+  271  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  272  git add .
+  273  git ..
+  274  cd .
+  275  ls
+  276  cd..
+  277  cd .
+  278  cd ..
+  279  ls
+  280  git add 
+  281  git add --all
+  282  git commit
+  283  git psh
+  284  git push
+  285  git commit -m "Q1. Initial complete"
+  286  git push -u origin main
+  287  git branch
+  288  git push -u origin main
+  289  git add .
+  290  git commit -m "Q1. Initial complete"
+  291  git push
+  292  git config --global credential.helper cache
+  293  git push
+  294  git push -u origin main
+  295  git config --list
+  296  git config user.name caleb-lim
+  297  git config --list
+  298  git config --global user.name "New Name"
+  299  git config --global user.name caleb-lim
+  300  git config --global user.name 
+  301  git push -u origin main
+  302  git config --list
+  303  ping github.com
+  304  git remote -v
+  305  git config --global credential.helper 'cache --timeout=3600'
+  306  git push -u origin main
+  307  cd ..
+  308  git push -u origin main
+  309  git config --global --unset credential.helper
+  310  git push -u origin main
+  311  ls
+  312  cd gpu-assignment/
+  313  git config --global --unset credential.helper
+  314  git push -u origin main
+  315  git reset --hard HEAD~1
+  316  git reflog
+  317  git reset --hard d1e922f
+  318  git reflog
+  319  git push origin main
+  320  git push main
+  321  git push origin 
+  322  git push origin main
+  323  git credential-manager delete
+  324  git config --global push.default simple
+  325  git push origin main
+  326  git config --global push.default matching
+  327  git push origin main
+  328  git help config
+  329  git push origin main
+  330  cd ex1-gol-cuda/
+  331  ls
+  332  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  333  cd ..
+  334  git push origin main
+  335  $ clip < ~/.ssh/id_ed25519.pub
+  336  cd ..
+  337  cd ~/.shh
+  338  cd ~
+  339  ls -a
+  340  cd .ssh
+  341  ls
+  342  vim id_rsa
+  343  ls
+  344  vim id_ed25519
+  345  ssh-add ~/.ssh/id_ed25519
+  346  vim id_ed25519
+  347  vim id_ed25519.pub
+  348  ls
+  349  cd ..
+  350  git push origin main
+  351  git branch
+  352  git push
+  353  ssh -T git@github.com
+  354  git push orgin main
+  355  git push origin main
+  356  ssh -T git@github.com
+  357  cd ..
+  358  ls
+  359  cd ..
+  360  ls
+  361  cd  High-Permorming-Computing/High-Permorming-Computing/
+  362  git remote set-url origin git@github.com:caleb-lim/High-Permorming-Computing.git
+  363  git push 
+  364  find . -size +1G | cat >> .gitignore
+  365  git push 
+  366  git reset --soft HEAD^
+  367  bfg --strip-blobs-bigger-than 50M
+  368  git commit -m "Exercise 1 complete - basic"
+  369  bfg --strip-blobs-bigger-than 50M
+  370  git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA' --prune-empty --tag-name-filter cat -- --all
+  371  git push 
+  372  git reset --soft HEAD^
+  373  git commit -m "Exercise 1 complete - basic"
+  374  git push 
+  375  git reset --soft HEAD^
+  376  git reflog
+  377  git commit -m "commit change"
+  378  git push
+  379  git commit -m "Change"
+  380  git push
+  381  git status
+  382  git add .
+  383  git commit -m "Change"
+  384  git push
+  385  git reset --soft HEAD~1
+  386  git reset --soft HEAD~3
+  387  git add .
+  388  git commit -m "Exercise 1 complete - basic"
+  389  git push
+  390  git pull
+  391  git push
+  392  git add .
+  393  git add -all
+  394  git add --all
+  395  git commit -m "Clean up"
+  396  git push
+  397  cd ex1-gol-cuda/
+  398  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  399  cd ..
+  400  git add .
+  401  git add -all
+  402  git add --all
+  403  git commit -m "Completed exercise 1 basic version"
+  404  git push
+  405  git push origin main
+  406  git config --global user.name
+  407  git config --global --unset credential.helper
+  408  git push origin main
+  409  ping github.com
+  410  git remote -v
+  411  git push
+  412  git reset --hard HEAD~1
+  413  git reflog
+  414  git reflog
+  415  git push origin main
+  416  git credential-manager delete
+  417  git config --global push.default simple
+  418  git config --global push.default matching
+  419  git push origin main
+  420  git config --global user.name
+  421  git push
+  422  ssh-keygen
+  423  cd $HOME
+  424  cat .ssh/id_rsa.pub
+  425  ls
+  426  git gpu-programming-essentials/
+  427  cd gpu-programming-essentials/
+  428  ls
+  429  cd ..
+  430  ls
+  431  cd ..
+  432  ls
+  433  cd ..
+  434  ls
+  435  cd scratch/courses0100
+  436  ls
+  437  cd caleblim/
+  438  cd High-Permorming-Computing/High-Permorming-Computing/
+  439  ls
+  440  git branch
+  441  git push origin main
+  442  git push git@github.com:<username>/<repository>.git main
+  443  git push git@github.com:caleb-lim/High-Permorming-Computing.git main
+  444  $ git rm --cached GIANT_FILE
+  445  git pull
+  446  ssh -T git@github.com
+  447   echo "$SSH_AUTH_SOCK"
+  448  ls -al ~/.ssh
+  449  git push
+  450  ls -al ~/.ssh
+  451  $ clip < ~/.ssh/id_ed25519.pub
+  452  $ clip < ~/.ssh/id_rsa.pub
+  453  $ clip < ~/.ssh/id_rsa
+  454  clip < ~/.ssh/id_rsa.pub
+  455  clip < ~/.ssh/id_ed25519.pub
+  456  clip < ~/.ssh/id_rsa.pub
+  457  ssh-keygen -t ed25519 -C "calebzlim@gmail.com"
+  458  $ eval "$(ssh-agent -s)"
+  459  eval "$(ssh-agent -s)"
+  460  ssh-add ~/.ssh/id_ed25519
+  461  clip < ~/.ssh/id_ed25519.pub
+  462  ls -al ~/.ssh
+  463  ssh -T git@github.com
+  464  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  465  ls
+  466  cd gpu-assignment/
+  467  ls
+  468  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  469  cd ex
+  470  cd ex1-gol-cuda/
+  471  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  472  git add -add
+  473  git add -all
+  474  git add --all
+  475  git commit -m "Clean up ex1"
+  476  git push
+  477  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  478  cd ..
+  479  ls
+  480  cd ..
+  481  ls
+  482  cd ..
+  483  ls
+  484  cd hpc-course/
+  485  lw
+  486  ls
+  487  salloc -p work --time=01:00:00 --mem=10G --tmp=500G
+  488  salloc -p gpuqueue --time=01:00:00 --mem=10G --tmp=500G
+  489  salloc -p gpuq --time=01:00:00 --mem=
+  490  salloc -p gpuq --time=01:00:00 --mem=10G 
+  491  ls
+  492  cd ex1-gol-cuda/
+  493  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  494  ls
+  495  cd ex1-gol-cuda/
+  496  LS
+  497  ls
+  498  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  499  ls
+  500  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  501  ls
+  502  cd High-Permorming-Computing/
+  503  ls
+  504  cd High-Permorming-Computing/
+  505  ls
+  506  cd gpu-assignment/
+  507  cd ex2-gol-gpu-directives/
+  508  ls
+  509  cd open
+  510  cd openacc/
+  511  ls
+  512  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  513  lslsslls
+  514  squeue
+  515  squeue --me
+  516  ls
+  517  cd High-Permorming-Computing/
+  518  High-Permorming-Computing/
+  519  cd High-Permorming-Computing/
+  520  ls
+  521  cd gpu-assignment/
+  522  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  523  cd ex2-gol-gpu-directives/
+  524  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  525  LS
+  526  ls
+  527  cd openacc/
+  528  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  529  cd ex2;2A
+  530  ls
+  531  cd ex-2
+  532  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  533  ks
+  534  ls
+  535  cd High-Permorming-Computing//High-Permorming-Computing/
+  536  ls
+  537  git add -all
+  538  git add --all
+  539  git commit -m "update"
+  540  git push
+  541  cd ..
+  542  ls
+  543  git clone https://github.com/nhurleywalker/hpc-course
+  544  ls
+  545  cd hpc-course/
+  546  ls
+  547  ./square.sh 4
+  548  run hello.sh
+  549  sbatch --reservation=CurtinHPC --account=courses0100 hello.sh
+  550  ls
+  551  cd
+  552  ls
+  553  cd gpu-programming-essentials/
+  554  ls
+  555  cd ..
+  556  ls
+  557  cd ..
+  558  ls
+  559  cd scratch/courses0100/caleblim/
+  560  ls
+  561  cd High-Permorming-Computing/High-Permorming-Computing/
+  562  ls
+  563  cd gpu-assignment/ex1-gol-cuda/
+  564  ls
+  565  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  566  ls
+  567  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  568  ls
+  569  cd High-Permorming-Computing/High-Permorming-Computing/gpu-assignment/
+  570  ls
+  571  cd ex1-gol-cuda/
+  572  ls
+  573  run.sh
+  574  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  575  ls
+  576  cd High-Permorming-Computing/High-Permorming-Computing/gpu-assignment/ex-2
+  577  ls
+  578  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  579  cd ..
+  580  cd ex1-gol-cuda/
+  581  sbatch --reservation=CurtinHPC --account=courses0100 run.sh
+  582  cd
+  583  ls
+  584  cd gpu-programming-essentials/
+  585  l
+  586  ls
+  587  cd ..
+  588  ls
+  589  cd ..
+  590  ls
+  591  cd ..
+  592  ls
+  593  cd scratch/courses0100/
+  594  cd caleblim/
+  595  ls
+  596  cd High-Permorming-Computing/High-Permorming-Computing/
+  597  ls
+  598  git add .
+  599  git add -all
+  600  git add --all
+  601  git commit -m "Pushing Finished Assignment"
+  602  git push origin main
+  603  git reset --soft HEAD~1
+  604  git add game_of_life.cu
+  605  git show --pretty="" --name-only bd61ad98    
+  606  git add ex-2
+  607  git add --all
+  608  git branch
+  609  git log main
+  610   git diff-tree --no-commit-id --name-only 8325319e04562c4ef671f6c9b4e2d9c749465fc4 -r
+  611  git reset --soft HEAD~1
+  612  git rm --cached gpu-assignment/ex2-gol-gpu-directives/openacc/slurm-432997.out
+  613  find . -size +100M | cat >> .gitignore
+  614  for /F "tokens=*" %a in ('git ls-files -ci --exclude-standard') do @git rm --cached "%a"
+  615  git ls-files -ci --exclude-standard -z | xargs -0 git rm --cached
+  616  cat.gitingonre
+  617  cat.gitignore
+  618  cat .gitignore
+  619  git ls-files -ci --exclude-standard -z
+  620  git ls-files -ci --exclude-standard -z | xargs -0 git rm --cached
+  621  git add .
+  622  git commit -m "Pushing Finished Assignment"
+  623  git push
+  624  make cpu_serial
+  625  make cpu_serial ./bin/01_cpu_serial
+  626  make COMPLETYLE=GCC cpu_serial
+  627  make COMPILERTYYPE=GCC cpu_serial
+  628  make COMPILERTYPE=GCC cpu_serial
+  629  ls
+  630  make buildinfo
+  631  make cpu_serial
+  632  make COMPILERTYPE=CRAY
+  633  make COMPILERTYPE=CRAY-GNU
+  634   COMPILERTYPE=CRAY-INTEL
+  635  make cpu_serial
+  636  makee cpu_serial ./bin/01_cpu_serial
+  637  make cpu_serial ./bin/01_cpu_serial
+  638  make cpu_serial ./bin/01_cpu_serial 500 500 4
+  639  make COMPILERTYPE=GCC cpu_serial
+  640  make COMPILERTYPE=CRAY-INTEL
+  641  make cpu_serial ./bin/01_cpu_serial 500 500 4
+  642  ./bin/01_cpu_serial 500 500 4
+  643  ./bin/01_cpu_serial
+  644  ./bin/01_cpu_serial..o
+  645  ./bin/01_cpu_serial
+  646  ./bin/01_cpu_serial 500 500 4
+  647  make cpu_serial ./bin/01_cpu_serial 500 500 4
+  648  make COMPILERTYPE=INTEL cpu_openmp
+  649  cp src/01_cpu_serial.c src/02_cpu_openmp_loop.c
+  650  ls
+  651  cp src/01_cpu_serial.c src/02_cpu_openmp_loop.c
+  652  cp src/01_gol_cpu_serial.c src/02_cpu_openmp_loop.c
+  653  cp src/01_gol_cpu_serial.c src/02_cpu_openmp_task.c
+  654  make COMPILERTYPE=INTEL cpu_openmp
+  655  make COMPILERTYPE=CRAY PROFILER=ON cpu_openmp_loop_cc
+  656  clear
+  657  make COMPILERTYPE=CRAY PROFILER=ON cpu_openmp_loop_cc
+  658  make COMPILERTYPE=CRAY
+  659  make COMPILERTYPE=CRAY-INTEL
+  660  make COMPILERTYPE=CRAY-GNU
+  661  make cpu_openmp_cc
+  662  module swap gcc
+  663  module swap gcc gcc/8.3.0
+  664  module list
+  665  make cpu_openmp_cc
+  666  cp src/01_cpu_serial.c src/02_cpu_openmp_loop.c
+  667  cp src/01_gol_cpu_serial.c src/02_cpu_openmp_loop.c
+  668  cp src/01_gol_cpu_serial.c src/02_cpu_openmp_task.c
+  669  make cpu_openmp_cc
+  670  make COMPILERTYPE=CRAY PROFILER=ON cpu_openmp_loop_cc
+  671  make COMPILERTYPE=CRAY PROFILER=ON cpu_serial_cc
+  672  ./bin/01_cpu_serial 500 500 4
+  673  cd src
+  674  ./bin/01_cpu_serial 500 500 4
+  675  ls
+  676  make cpu_openmp_cc
+  677  cd ..
+  678  ./bin/01_cpu_serial 500 500 4
+  679  ../bin/01_cpu_serial 500 500 4
+  680  cd bin
+  681  01_cpu_serial 500 500 4
+  682  ../bin/01_cpu_serial.out 500 500 4
+  683  cd ..
+  684  make clean
+  685  make cpu_openmp_cc
+  686  make COMPILERTYPE=CRAY-INTEL
+  687  make COMPILERTYPE=CRAY-GNU
+  688  make COMPILERTYPE=CRAY
+  689  make cpu_openmp_cc
+  690  make COMPILERTYPE=CRAY PROFILER=ON cpu_openmp_loop_cc
+  691  make COMPILERTYPE=GCC cpu_serial
+  692  make COMPILERTYPE=INTEL cpu_openmp
+  693  make COMPILERTYPE=INTEL cpu_serial_cc
+  694  make cpu_serial_cc
+  695  make 
+  696  make cpu_serial_cc
+  697  make cpu_openmp_cc
+  698  make cpu_openmp_loop_cc
+  699  make clean
+  700  make cpu_openmp_loop_cc
+  701  make cpu_serial_cc
+  702  .bin/01_gol_cpu_serial 10 10 5
+  703  ./bin/01_gol_cpu_serial 10 10 5
+  704  make cpu_openmp_loop_cc
+  705  make COMPILERTYPE=CRAY PROFILER=ON cpu_openmp_loop_cc
+  706  make COMPILERTYPE=CRAY-INTEL PROFILER=ON cpu_openmp_loop_cc
+  707  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  708  ./bin/02_cpu_openmp_loop 100 100 2
+  709  ./bin/02_gol_cpu_openmp_loop 100 100 2
+  710  gprof -lbp ./bin/02_cpu_openmp_loop gmon.out > analysis.txt
+  711  gprof -lbp ./bin/02_gol_cpu_openmp_loop gmon.out > analysis.txt
+  712  ./bin/02_cpu_openmp_loop 100 100 2
+  713  ./bin/02_gol_cpu_openmp_loop 100 100 2
+  714  gprof -lbp ./bin/02_gol_cpu_openmp_loop gmon.out > analysis.txt
+  715  gprof -lbp ./bin/02_gol_cpu_openmp_loop 100 100 2gmon.out > analysis.txt
+  716  gprof -lbp ./bin/02_gol_cpu_openmp_loop 100 100 2 gmon.out > analysis.txt
+  717  ./bin/02_gol_cpu_openmp_loop 100 100 2
+  718  ./bin/02_gol_cpu_openmp_loop 10 10 5
+  719  ./bin/01_gol_cpu_openmp_loop 10 10 5
+  720  ./bin/01_gol_cpu_serial 10 10 5
+  721  gprof -lbp ./bin/01\_gol_cpu_serial gmon.out > analysis.txt
+  722  ./bin/02_gol_cpu_openmp_loop 10 10 5
+  723  ./bin/01_gol_cpu_serial 100 100 10
+  724  gprof -lbp ./bin/02_gol_cpu_openmp_loop gmon.out > analysis.txt
+  725  ./bin/02_gol_cpu_openmp_loop 100 100 20
+  726  gprof -lbp ./bin/02_gol_cpu_openmp_loop gmon.out > analysis.txt
+  727  ./bin/02_gol_cpu_openmp_loop 100 100 20
+  728  ./bin/01_gol_cpu_serial 10 10 5
+  729  ./bin/02_gol_cpu_openmp_loop 100 100 20
+  730  ./bin/01_gol_cpu_serial 100 100 20
+  731  nomp=2
+  732  nxgrid=100
+  733  nygrid=100
+  734  nsteps=2
+  735  someversionname=reference
+  736  basename=GOL-${someversionname}.nomp-${nomp}.ngrid-${nxgrid}x${nygrid}.${nsteps}
+  737  export OMP_NUM_THREADS=${nomp}
+  738  ./bin/02_cpu_openmp_loop ${nxgrid} ${nygrid} ${nsteps} > ${basename}.log
+  739  ./bin/02_gol_cpu_openmp_loop ${nxgrid} ${nygrid} ${nsteps} > ${basename}.log mv GOL-stats.txt ${basename}.stats.txt
+  740  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  741  someversionname=1.0
+  742  ./bin/02_gol_cpu_openmp_loop ${nxgrid} ${nygrid} ${nsteps} > ${basename}.log mv GOL-stats.txt ${basename}.stats.txt
+  743  nsteps=10
+  744  ./bin/02_gol_cpu_openmp_loop ${nxgrid} ${nygrid} ${nsteps} > ${basename}.log mv GOL-stats.txt ${basename}.stats.txt
+  745  make clean
+  746  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_seri
+  747  ./bin/02_gol_cpu_openmp_loop ${nxgrid} ${nygrid} ${nsteps} > ${basename}.log mv GOL-stats.txt ${basename}.stats.txt
+  748  make cpu_serial_cc
+  749  ./bin/02_cpu_openmp_loop 100 100 10
+  750  ./bin/02_gol_cpu_openmp_loop 100 100 10
+  751  ./bin/01_gol_ccpu_serial100 100 100
+  752  ./bin/01_gol_cpu_serial 100 100 100
+  753  ./bin/01_gol_cpu_serial 100 100 10
+  754  make clean
+  755  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  756  make cpu_serial_cc
+  757  ./bin/01_gol_cpu_serial 100 100 10
+  758  ./bin/02_gol_cpu_openmp_loop 100 100 10
+  759  ./bin/01_gol_cpu_serial 100 100 10
+  760  ./bin/02_gol_cpu_openmp_loop 100 100 10
+  761  ./bin/01_gol_cpu_serial 100 100 10
+  762  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  763  ./bin/01_gol_cpu_serial 10000 10000 10
+  764  make clean
+  765  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  766  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  767  make cpu_serial_cc
+  768  ./bin/01_gol_cpu_serial 10000 10000 10
+  769  ./bin/02_gol_cpu_openmp_loop 10 10 5
+  770  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  771  ./bin/01_gol_cpu_serial 10000 10000 10
+  772  make clean
+  773  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  774  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  775  make clean
+  776  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  777  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  778  make cpu_serial_cc
+  779  ./bin/01_gol_cpu_serial 10000 10000 10
+  780  make clean
+  781  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  782  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  783  make clean
+  784  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  785  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  786  make cpu_serial_cc
+  787  ./bin/01_gol_cpu_serial 10000 10000 10
+  788  ./bin/02_gol_cpu_openmp_loop ${nxgrid} ${nygrid} 5 > ${basename}.log mv GOL-stats.txt ${basename}.stats.txt
+  789  ./bin/02_gol_cpu_openmp_loop10 10 5 > ${basename}.log mv GOL-stats.txt ${basename}.stats.txt
+  790  ./bin/02_gol_cpu_openmp_loop 10 10 5 > ${basename}.log mv GOL-stats.txt ${basename}.stats.txt
+  791  make cpu_serial_cc
+  792  ./bin/01_gol_cpu_serial 10 10 5
+  793  make clean
+  794  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  795  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  796  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_l
+  797  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  798  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  799  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  800  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  801  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  802  ls
+  803  make clean
+  804  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  805  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc\
+  806  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  807  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  808  ./bin/02_gol_cpu_openmp_loop 10 10 10
+  809  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc\
+  810  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  811  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  812  OMP_NUM_THREADS=1
+  813  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  814  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  815  OMP_NUM_THREADS=4
+  816  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  817  OMP_NUM_THREADS = 4 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  818  OMP_NUM_THREADS=4 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  819  OMP_NUM_THREADS=16 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  820  OMP_NUM_THREADS=1 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  821  make cpu_serial_cc
+  822  ./bin/01_gol_cpu_serial 10000 10000 10
+  823  make cpu_serial_cc
+  824  ./bin/01_gol_cpu_serial 10000 10000 10
+  825  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  826  OMP_NUM_THREADS=1 ./bin/01_gol_cpu_serial 10000 10000 10
+  827  OMP_NUM_THREADS=1 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  828  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  829  ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  830  OMP_NUM_THREADS=1 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  831  OMP_NUM_THREADS=16 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  832  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  833  OMP_NUM_THREADS=16 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  834  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  835  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  836  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  837  OMP_NUM_THREADS=16 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  838  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  839  OMP_NUM_THREADS=16 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  840  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_loop_cc
+  841  OMP_NUM_THREADS=16 ./bin/02_gol_cpu_openmp_loop 10000 10000 10
+  842  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_task_cc
+  843  OMP_NUM_THREADS=16 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  844  OMP_NUM_THREADS=16 ./bin/02_gol_cpu_openmp_task 10 10 5
+  845  ./bin/02_gol_cpu_openmp_task 10 10 5 > test.log mv GOL-stats.txt test.stats.txt
+  846  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_task 1000 1000 5
+  847  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  848  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_task_cc
+  849  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  850  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_task_cc
+  851  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_task 100 100 10
+  852  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  853  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_task 10 10 5
+  854  make COMPILERTYPE=CRAY-GNU PROFILER=ON cpu_openmp_task_cc
+  855  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_task 10 10 5
+  856  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_task 10000 10000 5
+  857  OMP_NUM_THREADS=15 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  858  OMP_NUM_THREADS=16 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  859  OMP_NUM_THREADS=14 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  860  OMP_NUM_THREADS=13 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  861  OMP_NUM_THREADS=12 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  862  OMP_NUM_THREADS=11 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  863  OMP_NUM_THREADS=10 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  864  OMP_NUM_THREADS=9 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  865  OMP_NUM_THREADS=8 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  866  OMP_NUM_THREADS=7 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  867  OMP_NUM_THREADS=6 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  868  OMP_NUM_THREADS=3 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  869  OMP_NUM_THREADS=4 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  870  OMP_NUM_THREADS=2 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  871  OMP_NUM_THREADS=1 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  872  OMP_NUM_THREADS=32 ./bin/02_gol_cpu_openmp_task 10000 10000 10
+  873  history > loop.txt
